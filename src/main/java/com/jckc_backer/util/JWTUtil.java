@@ -60,6 +60,7 @@ public class JWTUtil {
      */
     public static boolean verify(String token, String username) {
         try {
+
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
             //在token中附带了username信息
             JWTVerifier verifier = JWT.require(algorithm)
