@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jckc_backer.modules.reg.mapper.RegMapper">
+	<!-- User findByUsername(String username) -->
+	<select id="findByUname"
+			resultType="com.jckc_backer.entity.RoleUserEntity">
+		SELECT
+			username,password,role,permission,ban
+		FROM
+			role_user
+		WHERE
+			username=#{username}
+	</select>
+</mapper>

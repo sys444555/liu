@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/table_data_tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:01 GMT -->
+
+<head>
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>客户信息后台</title>
+
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link href="../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="../css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="../css/other.css" rel="stylesheet"/>
+    <link href="../css/city/cityselect.css" rel="stylesheet"/>
+    <link href="../css/pagination.css"/>
+
+</head>
+<body class="gray-bg">
+<div class="btn-toolbar" style="margin-left: 1px; background-color: ghostwhite; margin: 0 auto;">
+    <div class="btn-group" style="margin-left: 10px;">
+        <button class="btn btn-delete" data-toggle="modal" data-target="#cus_chance_delete" style="margin-top: 10px;"><i
+                class="fa fa-remove"></i>轮播图下架
+        </button>
+
+        <button class="btn btn-add" data-toggle="modal" data-target="#cus_all_add" style="margin:10px;"><i class="fa fa-plus"></i> 轮播图上架</button>
+        <p style="color: red">最多只能上架5张图片（不含下架图）</p>
+<!--        <button class="btn btn-alter" data-toggle="modal" id="update" style="margin-top: 10px;"><i class="fa fa-eraser"></i>  货品修改</button>-->
+    </div>
+</div>
+
+<!--
+                        作者：178642170@qq.com
+                        时间：2019-05-14
+                        描述：custom 添加模态
+                    -->
+<div class="modal" id="cus_all_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto;">
+    <div class="modal-dialog" id="cus_all_dialog2">
+        <div class="modal-content" style="overflow: scroll; height: 500px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">
+                    图片添加页面
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table width="100%" align="center" class="cus_all_tb">
+                    <form id="picture_add" method="POST" enctype="multipart/form-data">
+                        <tr>
+                            <td align="center">图片：
+                                <input type="file" style="width: 250px;"  id="picUrl" name="picUrl"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td align="center">题材：
+                                <input type="text" style="width: 250px;"  id="title" name="title"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">类型：
+                                <select style="width: 250px;" id="type" name="type">
+                                    <option></option>
+                                    <option value="hot">人气热销</option>
+                                    <option value="home">首页轮播</option>
+                                    <option value="duihuan">礼券背景图</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">状态：
+                                <input type="text" style="width: 250px;"  id="statusStr" name="statusStr" value="显示" readonly="readonly" />
+                            </td>
+                        </tr>
+                        <!--<tr>
+                            <td align="center">备注：
+                                <input type="text" id="remark" name="remark"/>
+                            </td>
+                        </tr>-->
+                    </form>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="picture_btn">
+                    提交更改
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+<!--
+    描述：修改信息
+-->
+<!--
+<div class="modal" id="cus_chance_alter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto;">
+    <div class="modal-dialog" id="cus_chance_dialog">
+        <div class="modal-content" style="overflow: scroll; height: 500px; ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    客户信息修改页面
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table width="100%" align="center" class="cus_chance_tb">
+                    <form id="pic_update" method="post">
+                        <input hidden="hidden" type="text" value="" id="id" name="id"/>
+                        <tr>
+                            <td align="center">题材：
+                                <input type="text" id="picture_title" name="title"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">类型：
+                                <select style="width: 170px;" id="picture_type" name="type">
+                                    <option></option>
+                                    <option value="hot">人气热销</option>
+                                    <option value="home">首页轮播</option>
+                                    <option value="duihuan">礼券背景图</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">状态：
+                                <input type="text" value="显示" readonly="readonly" name="statusStr"/>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="update_sub">
+                    提交保存
+                </button>
+            </div>
+        </div>
+        &lt;!&ndash; /.modal-content &ndash;&gt;
+    </div>
+    &lt;!&ndash; /.modal &ndash;&gt;
+</div>
+-->
+
+
+<div class="modal" id="cus_chance_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+     aria-hidden="true">
+    <div class="modal-dialog" id="cus_chance_dialog1">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel1">
+                    客户商机确定
+                </h4>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <span style="color: #B94A48; border: medium;  font-size: 22px;"><b>是否需要下架该条数据信息?</b></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="updown_btn">
+                    确定下架
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ibox-content">
+    <table class="table table-striped table-bordered table-hover dataTables-example" id="t_table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>序号</th>
+            <th>图片显示</th>
+            <th>题材</th>
+            <th>类型</th>
+            <th>状态</th>
+            <th>添加时间</th>
+        </tr>
+        </thead>
+        <tbody style="text-align: center;" id="chance_td">
+
+        </tbody>
+    </table>
+</div>
+
+<div class="M-box">
+    <div class="Pagination" id="pagination"></div>
+</div>
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="../js/plugins/jeditable/jquery.jeditable.js"></script>
+<script src="../js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script src="../js/content.min.js?v=1.0.0"></script>
+<script src="../js/cityselect.js"></script>
+<script src="../js/jquery.pagination.js"></script>
+<script src="../js/management/picture.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=178642170" charset="UTF-8"></script>
+</body>
+
+</html>

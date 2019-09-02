@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>信息管理后台 - 注册</title>
+	<link href="../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+	<link href="../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+	<link href="../css/animate.min.css" rel="stylesheet">
+	<link href="../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+	<script>
+		if(window.top !== window.self) {
+			window.top.location = window.location;
+		}
+	</script>
+</head>
+
+<body class="gray-bg">
+
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+	<div>
+		<h3>注册管理后台</h3>
+
+		<form class="m-t" role="form" id="form-reg">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="用户名" name="username" id="username">
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" placeholder="密码" name="password" id="password">
+			</div>
+			<div class="form-group">
+						<select style="width: 300px;height:34px" id="role" name="role">
+							<option value="user">员工</option>
+							<option value="admin">管理员</option>
+						</select>
+			</div>
+			<div class="form-group">
+				<select style="width: 300px;height:34px" id="permission" name="permission">
+					<option value="nomal">普通权限</option>
+					<option value="vip">管理员权限</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" value="0" readonly="readonly"  name="ban">
+			</div>
+			<input style="font-size:25px" id="btn-reg" type="button" value="注册"/>
+		</form>
+	</div>
+</div>
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="../js/reg/reg.js"></script>
+<script src="../js/login/js.cookie.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+</body>
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:18:23 GMT -->
+
+</html>

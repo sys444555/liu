@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jckc_backer.modules.management.mapper.PictureMapper">
+
+<update id="updateStatus">
+    update banner set status=1,statusStr='不显示' where id=#{id}
+</update>
+
+    <select id="selectByType" resultType="com.jckc_backer.modules.management.entity.PictureEntity">
+        SELECT id,dateAdd,picUrl,remark,statusStr,title,type
+        FROM banner
+        WHERE type = #{type}
+    </select>
+
+</mapper>
