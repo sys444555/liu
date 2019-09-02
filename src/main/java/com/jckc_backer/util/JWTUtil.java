@@ -58,8 +58,13 @@ public class JWTUtil {
      * @param username 用户名
      * @return 是否正确
      */
-    public static boolean verify(String token, String username) {
+    public  boolean verify(String token, String username) {
         try {
+            //1 . 根据token解密，解密出jwt-id , 先从redis中查找出redisToken，匹配是否相同
+            String redisToken =  (String) redisUtil.get("JWT-SESSION-" + getJwtIdByToken(token));
+            if (!redisToken.equals(token)) {
+                return false;
+            }
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
             //在token中附带了username信息
             JWTVerifier verifier = JWT.require(algorithm)
@@ -67,6 +72,7 @@ public class JWTUtil {
                     .build();
             //验证 token
             verifier.verify(token);
+            redisUtil.set("JWT-SESSION-" + getJwtIdByToken(token), redisToken, EXPIRE_TIME / 1000);
             return true;
         } catch (Exception exception) {
             return false;
@@ -74,11 +80,18 @@ public class JWTUtil {
     }
 
     /**
+     * 根据Token 获取jwt-id
+     */
+    private String getJwtIdByToken(String token) throws JWTDecodeException {
+        return JWT.decode(token).getClaim("jwt-id").asString();
+    }
+
+    /**
      * 获得token中的信息，无需secret解密也能获得
      *
      * @return token中包含的用户名
      */
-    public static String getUsername(String token) {
+    public  String getUsername(String token) {
         try {
             DecodedJWT jwt = JWT.decode(token);
             return jwt.getClaim("username").asString();

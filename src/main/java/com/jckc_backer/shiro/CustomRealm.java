@@ -22,6 +22,9 @@ public class CustomRealm extends AuthorizingRealm {
     @Resource
     private RoleUserMapper userMapper;
 
+    @Resource
+    private JWTUtil jwtUtil;
+
     /**
      * 必须重写此方法，不然会报错
      */
@@ -37,11 +40,11 @@ public class CustomRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         System.out.println("————身份认证方法————");
         String token = (String) authenticationToken.getCredentials();
-        System.out.println(token);
+        System.out.println("token:"+token);
         // 解密获得username，用于和数据库进行对比
-        String username = JWTUtil.getUsername(token);
+        String username = jwtUtil.getUsername(token);
         System.out.println(username);
-        if (username == null || !JWTUtil.verify(token, username)) {
+        if (username == null || !jwtUtil.verify(token, username)) {
             throw new AuthenticationException("token认证失败！");
         }
         String password = userMapper.getPassword(username);
@@ -61,7 +64,7 @@ public class CustomRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         System.out.println("————权限认证————");
-        String username = JWTUtil.getUsername(principals.toString());
+        String username = jwtUtil.getUsername(principals.toString());
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         //获得该用户角色
         String role = userMapper.getRole(username);
