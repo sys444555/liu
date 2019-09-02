@@ -17,7 +17,7 @@ $("#btn-reg").click(function () {
             console.log(json);
             if (json.code ==200) {
                 alert("注册成功");
-                location.href="login.html";
+                location.href="index.html";
                // window.location.reload(true);
             } else {
                 alert(json.message);
