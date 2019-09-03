@@ -22,20 +22,24 @@
     <link href="../css/other.css" rel="stylesheet"/>
     <link href="../css/city/cityselect.css" rel="stylesheet"/>
     <link href="../css/pagination.css"/>
+    <script src="../static/js/shoop/shoop.js"></script>
 </head>
 <body class="gray-bg">
 <div class="btn-toolbar" style="margin-left: 1px; background-color: ghostwhite; margin: 0 auto;">
-    <!--<div class="btn-group" style="margin-left: 10px;">-->
-        <!--<button class="btn btn-delete" data-toggle="modal" data-target="#cus_chance_delete" style="margin-top: 10px;"><i-->
-                <!--class="fa fa-remove"></i> 删除-->
-        <!--</button>-->
-        <!--<button class="btn btn-add" data-toggle="modal" data-target="#cus_all_add" style="margin:10px;"><i class="fa fa-plus"></i>  添加</button>-->
-        <!--<button class="btn btn-alter" data-toggle="modal" id="update" style="margin-top: 10px;"><i class="fa fa-eraser"></i>  修改</button>-->
-    <!--</div>-->
+    <div class="btn-group" style="margin-left: 10px;">
+        <input id="c_name" type="text" placeholder="请输入您需要查找的内容 …"
+               style="text-align:center;height:30px; line-height:30px;margin:10px 0px 10px 50px;">
+        <input id="bt_name" type="button" value="搜索"
+               style="text-align:center;height:30px; line-height:30px;margin:12px 0px 10px 10px;">
+        <button class="btn btn-delete" data-toggle="modal" data-target="#cus_chance_delete" style="margin-top: 10px;"><i
+                class="fa fa-remove"></i> 商品下架
+        </button>
+        <button class="btn btn-alter" data-toggle="modal" id="update" style="margin-top: 10px;"><i class="fa fa-eraser"></i>  商品上架</button>
+    </div>
 </div>
 
 <!--
-    描述：修改价格信息
+    描述：修改客户信息
 -->
 <div class="modal" id="cus_chance_alter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto;">
     <div class="modal-dialog" id="cus_chance_dialog">
@@ -45,16 +49,65 @@
                     ×
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    产品信息修改页面
+                    客户信息修改页面
                 </h4>
             </div>
             <div class="modal-body">
                 <table width="100%" align="center" class="cus_chance_tb">
-                    <form id="shop_update" method="post">
+                    <form id="shoop_update" method="post">
                         <input hidden="hidden" type="text" value="" id="id" name="id"/>
+
                         <tr>
-                            <td align="center">产品名称：
-                                <input type="text" name="shop" id="shop_name"/>
+                            <td align="center">姓名：
+                                <input type="text" name="name" id="name"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                            <td align="absbottom">手机号：
+                                <input type="text" name="phone" id="phone"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">省份：
+                                <input type="text" placeholder="省份" name="province" id="province"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                            <td align="absbottom">市：
+                                <input type="text" name="city" id="city"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">区：
+                                <input type="text" name="area" id="area"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                            <td align="absbottom">具体地址：
+                                <input type="text" name="fullAddress" id="fullAddress"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td align="center">状态：
+                                <input type="text" style="width: 144px;" name="status" id="status"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                            <td align="absbottom">单号：
+                                <input type="text" style="width: 144px;" name="number" id="number"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                       <!-- <tr>
+                            <td align="absbottom">留言：
+                                <input type="text" style="width: 144px;" name="leaveWord" id="leaveWord"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>-->
+
+                        <tr>
+                            <td align="center" colspan="2">额外备注：
+                                <textarea cols="50" rows="3" placeholder="请输入备注" id="leaveWord" name="leaveWord"></textarea>
                             </td>
                         </tr>
                     </form>
@@ -73,45 +126,6 @@
     <!-- /.modal -->
 </div>
 
-<!--
-                        作者：178642170@qq.com
-                        时间：2019-05-14
-                        描述：custom 添加模态
-                    -->
-<div class="modal" id="cus_all_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto;">
-    <div class="modal-dialog" id="cus_all_dialog2">
-        <div class="modal-content" style="overflow: scroll; height: 500px;">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    ×
-                </button>
-                <h4 class="modal-title" id="myModalLabel2">
-                    客户信息增加页面
-                </h4>
-            </div>
-            <div class="modal-body">
-                <table width="100%" align="center" class="cus_all_tb">
-                    <form id="shop_add" method="post">
-                        <tr>
-                            <td align="center">：产品名称
-                                <input type="text" placeholder="产品名称" id="shop" name="shop"/>
-                            </td>
-                        </tr>
-                    </form>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-primary" id="shop_btn">
-                    提交更改
-                </button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal -->
-</div>
 
 <div class="modal" id="cus_chance_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
      aria-hidden="true">
@@ -145,14 +159,20 @@
         <tr>
             <th></th>
             <th>序号</th>
-            <th>产品信息</th>
-            <th>客户名字</th>
-            <th>客户联系电话</th>
-            <th>性别</th>
-            <th>客户状态</th>
+            <th>客户姓名</th>
+            <th>套餐名称</th>
+            <th>价格</th>
+            <th>手机号</th>
+            <th>居住省份</th>
+            <th>城市</th>
+            <th>区域</th>
+            <th>详细地址</th>
+            <th>留言</th>
+            <th>状态</th>
+            <th>快递单号</th>
         </tr>
         </thead>
-        <tbody style="text-align: center;" id="vip_td">
+        <tbody style="text-align: center;" id="chance_td">
 
         </tbody>
     </table>
@@ -167,7 +187,7 @@
 <script src="../js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="../js/content.min.js?v=1.0.0"></script>
 <script src="../js/cityselect.js"></script>
-<script src="../js/vip/vip.js"></script>
+<script src="../js/shoop/shoop.js"></script>
 <script src="../js/jquery.pagination.js"></script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=178642170" charset="UTF-8"></script>
 </body>
