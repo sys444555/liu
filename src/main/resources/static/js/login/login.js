@@ -2,8 +2,6 @@ $("#btn-login").click(function () {
     var forData = $("#form-login").serialize();
     forData = decodeURIComponent(forData, true);
     console.log($("#username").val());
-    var token=getCookie("token");
-    console.log(token)
     $.ajax({
         url: "../login",
         data: forData,
@@ -40,7 +38,7 @@ function setCookie(name,value)
 }
 
 //读取cookies
-function getCookie(name)
+/*function getCookie(name)
 {
     var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
 
@@ -50,6 +48,6 @@ function getCookie(name)
     else{
         return null;
     }
-}
+}*/
 
 
