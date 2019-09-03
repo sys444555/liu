@@ -22,7 +22,6 @@
     <link href="../css/other.css" rel="stylesheet"/>
     <link href="../css/city/cityselect.css" rel="stylesheet"/>
     <link href="../css/pagination.css"/>
-    <script src="../static/js/shoop/shoop.js"></script>
 </head>
 <body class="gray-bg">
 <div class="btn-toolbar" style="margin-left: 1px; background-color: ghostwhite; margin: 0 auto;">
@@ -34,10 +33,96 @@
         <button class="btn btn-delete" data-toggle="modal" data-target="#cus_chance_delete" style="margin-top: 10px;"><i
                 class="fa fa-remove"></i> 删除
         </button>
+        <button class="btn btn-add" data-toggle="modal" data-target="#cus_all_add" style="margin:10px;"><i class="fa fa-plus"></i>  添加</button>
         <button class="btn btn-alter" data-toggle="modal" id="update" style="margin-top: 10px;"><i class="fa fa-eraser"></i>  修改</button>
     </div>
 </div>
-
+<!--
+        添加员工信息
+            -->
+<div class="modal" id="cus_all_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto;">
+    <div class="modal-dialog" id="cus_all_dialog2">
+        <div class="modal-content" style="overflow: scroll; height: 500px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">
+                    图片添加页面
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table width="100%" align="center" class="cus_all_tb">
+                    <form id="personnel_add" method="post" enctype="multipart/form-data">
+                        <tr>
+                            <td align="center">姓名：
+                                <input type="text" name="username" id="username"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                            <td align="absbottom" id="sex" name="sex">性别：
+                                <input type="radio" name="sex" value="0"/>男
+                                <input type="radio" name="sex" value="1"/>女&nbsp;
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">状态：
+                                <select style="width: 250px;" id="status" name="status">
+                                    <option></option>
+                                    <option value="0">在职</option>
+                                    <option value="1">离职</option>
+                                </select>
+                            </td>
+                            <td align="absbottom">年龄：
+                                <input type="text" name="age" id="age"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">手机号：
+                                <input type="text" name="phone" id="phone"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                            <td align="absbottom">QQ：
+                                <input type="text" name="qq" id="qq"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="absbottom">微信：
+                                <input type="text" style="width: 144px;" name="wexin" id="wexin"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                            <td align="absbottom">邮箱：
+                                <input type="text" style="width: 144px;" name="email" id="email"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="absbottom">家庭地址：
+                                <input type="text" style="width: 144px;" name="address" id="address"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                            <td align="absbottom">入职时间：
+                                <input type="date" style="width: 144px;" name="date" id="date"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="personnel_btn">
+                    提交更改
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
 <!--
     描述：修改客户信息
 -->
@@ -54,16 +139,60 @@
             </div>
             <div class="modal-body">
                 <table width="100%" align="center" class="cus_chance_tb">
-                    <form id="shoop_update" method="post">
+                    <form id="personnel_update" method="post">
                         <input hidden="hidden" type="text" value="" id="id" name="id"/>
 
                         <tr>
                             <td align="center">姓名：
-                                <input type="text" name="name" id="name"/>
+                                <input type="text" name="username" id="p_username"/>
                                 <span style="color: red;">*</span>
                             </td>
-                            <td align="absbottom">手机号：
-                                <input type="text" name="phone" id="phone"/>
+                            <td align="absbottom" id="p_sex" name="sex">性别：
+                                <input type="radio" name="sex" value="0"/>男
+                                <input type="radio" name="sex" value="1"/>女&nbsp;
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">状态：
+                                <select style="width: 250px;" id="p_status" name="status">
+                                    <option></option>
+                                    <option value="0">在职</option>
+                                    <option value="1">离职</option>
+                                </select>
+                            </td>
+                            <td align="absbottom">年龄：
+                                <input type="text" name="age" id="p_age"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">手机号：
+                                <input type="text" name="phone" id="p_phone"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                            <td align="absbottom">QQ：
+                                <input type="text" name="qq" id="p_qq"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="absbottom">微信：
+                                <input type="text" style="width: 144px;" name="wexin" id="p_wexin"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                            <td align="absbottom">邮箱：
+                                <input type="text" style="width: 144px;" name="email" id="p_email"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="absbottom">家庭地址：
+                                <input type="text" style="width: 144px;" name="address" id="p_address"/>
+                                <span style="color: red;">*</span>
+                            </td>
+                            <td align="absbottom">入职时间：
+                                <input type="date" style="width: 144px;" name="date" id="p_date"/>
                                 <span style="color: red;">*</span>
                             </td>
                         </tr>
@@ -125,7 +254,7 @@
             <th>邮箱</th>
             <th>在职状态</th>
             <th>家庭地址</th>
-
+            <th>入职时间</th>
         </tr>
         </thead>
         <tbody style="text-align: center;" id="chance_td">

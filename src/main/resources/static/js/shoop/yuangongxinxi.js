@@ -1,8 +1,8 @@
 $(function () {
     function showChanceList() {
         $.ajax({
-            url: "../shoop/list",
-            data: {pageNo: 1, pageSize: 10},
+            url: "../personnel/list",
+            data: {pageNo: 1, pageSize: 20},
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -10,15 +10,29 @@ $(function () {
                     var html = '<tr>'
                         + '<td class="bs-checkbox"  style="width: 36px;" data-field="state" tabindex="0"><input id="#{cusId}" type="checkbox" name="checkbox"/></td>'
                         + '<td>#{id}</td>'
-                        + '<td>#{name}</td>'
+                        + '<td>#{username}</td>'
+                        + '<td>#{sex}</td>'
+                        + '<td>#{age}</td>'
                         + '<td>#{phone}</td>'
-                        + '<td>#{full_address}</td>'
+                        + '<td>#{qq}</td>'
+                        + '<td>#{wexin}</td>'
+                        + '<td>#{email}</td>'
+                        + '<td>#{status}</td>'
+                        + '<td>#{address}</td>'
+                        + '<td>#{date}</td>'
                         + '</tr>';
                     html = html.replace("#{cusId}", "cus"+i);
                     html = html.replace("#{id}", i);
-                    html = html.replace("#{name}", data.data.list[i].name);
+                    html = html.replace("#{username}", data.data.list[i].username);
+                    html = html.replace("#{sex}", data.data.list[i].sex);
+                    html = html.replace("#{age}", data.data.list[i].age);
                     html = html.replace("#{phone}", data.data.list[i].phone);
-                    html = html.replace("#{full_address}", data.data.list[i].fullAddress);
+                    html = html.replace("#{qq}", data.data.list[i].qq);
+                    html = html.replace("#{wexin}", data.data.list[i].wexin);
+                    html = html.replace("#{email}", data.data.list[i].email);
+                    html = html.replace("#{status}", data.data.list[i].status);
+                    html = html.replace("#{address}", data.data.list[i].address);
+                    html = html.replace("#{date}", data.data.list[i].date);
                     $("#chance_td").append(html);
                     localStorage.setItem("cus" + i, JSON.stringify(data.data.list[i]))
                 }
@@ -35,8 +49,8 @@ $(function () {
                     callback: function (api) {
                         $("#chance_td").empty();
                         $.ajax({
-                            url: "../shoop/list",
-                            data: {pageNo: api.getCurrent(), pageSize: 10},
+                            url: "../personnel/list",
+                            data: {pageNo: api.getCurrent(), pageSize: 20},
                             type: "get",
                             dataType: "json",
                             success: function (data) {
@@ -44,15 +58,29 @@ $(function () {
                                     var html = '<tr>'
                                         + '<td class="bs-checkbox"  style="width: 36px;" data-field="state" tabindex="0"><input id="#{cusId}" type="checkbox" name="checkbox"/></td>'
                                         + '<td>#{id}</td>'
-                                        + '<td>#{name}</td>'
+                                        + '<td>#{username}</td>'
+                                        + '<td>#{sex}</td>'
+                                        + '<td>#{age}</td>'
                                         + '<td>#{phone}</td>'
-                                        + '<td>#{full_address}</td>'
+                                        + '<td>#{qq}</td>'
+                                        + '<td>#{wexin}</td>'
+                                        + '<td>#{email}</td>'
+                                        + '<td>#{status}</td>'
+                                        + '<td>#{address}</td>'
+                                        + '<td>#{date}</td>'
                                         + '</tr>';
                                     html = html.replace("#{cusId}", "cus"+i);
                                     html = html.replace("#{id}", i);
-                                    html = html.replace("#{name}", data.data.list[i].name);
+                                    html = html.replace("#{username}", data.data.list[i].username);
+                                    html = html.replace("#{sex}", data.data.list[i].sex);
+                                    html = html.replace("#{age}", data.data.list[i].age);
                                     html = html.replace("#{phone}", data.data.list[i].phone);
-                                    html = html.replace("#{full_address}", data.data.list[i].fullAddress);
+                                    html = html.replace("#{qq}", data.data.list[i].qq);
+                                    html = html.replace("#{wexin}", data.data.list[i].wexin);
+                                    html = html.replace("#{email}", data.data.list[i].email);
+                                    html = html.replace("#{status}", data.data.list[i].status);
+                                    html = html.replace("#{address}", data.data.list[i].address);
+                                    html = html.replace("#{date}", data.data.list[i].date);
                                     $("#chance_td").append(html);
                                      localStorage.setItem("cus" + i, JSON.stringify(data.data.list[i]))
                                 }
@@ -84,7 +112,7 @@ $("#delete_btn").click(function () {
         var data = JSON.parse(localStorage.getItem(checkId.id));
         var checkid= data.id;
         $.ajax({
-            url: "../shoop/delete/"+checkid,
+            url: "../personnel/delete/"+checkid,
             type: "POST",
             dataType: "json",
             async:true,
@@ -105,8 +133,8 @@ $("#delete_btn").click(function () {
 $("#bt_name").click(function () {
     var cname=$("#c_name").val();
     $.ajax({
-        url: "../shoop/select/",
-        data: {name:cname},
+        url: "../personnel/select/",
+        data: {username:cname},
         type: "POST",
         dataType: "json",
         async:true,
@@ -117,19 +145,33 @@ $("#bt_name").click(function () {
                     window.location.reload(true);
                 }
                 $("#t_table tbody").html("");
-                console.log(json.data.name);
+                console.log(json.data.username);
                     var html = '<tr>'
                         + '<td class="bs-checkbox"  style="width: 36px;" data-field="state" tabindex="0"><input id="#{cusId}" type="checkbox" name="checkbox"/></td>'
                         + '<td>#{id}</td>'
-                        + '<td>#{name}</td>'
+                        + '<td>#{username}</td>'
+                        + '<td>#{sex}</td>'
+                        + '<td>#{age}</td>'
                         + '<td>#{phone}</td>'
-                        + '<td>#{full_address}</td>'
+                        + '<td>#{qq}</td>'
+                        + '<td>#{wexin}</td>'
+                        + '<td>#{email}</td>'
+                        + '<td>#{status}</td>'
+                        + '<td>#{address}</td>'
+                        + '<td>#{date}</td>'
                         + '</tr>';
-                html = html.replace("#{cusId}", "cus"+0);
+                    html = html.replace("#{cusId}", "cus"+0);
                     html = html.replace("#{id}", json.data.id);
-                    html = html.replace("#{name}", json.data.name);
-                    html = html.replace("#{phone}", json.data.phone);
-                    html = html.replace("#{full_address}", json.data.fullAddress);
+                    html = html.replace("#{username}", json.data.username);
+                    html = html.replace("#{sex}", json.data.sex);
+                    html = html.replace("#{age}", json.data.age);
+                html = html.replace("#{phone}", json.data.phone);
+                html = html.replace("#{qq}", json.data.qq);
+                html = html.replace("#{wexin}", json.data.wexin);
+                html = html.replace("#{email}", json.data.email);
+                html = html.replace("#{status}", json.data.status);
+                html = html.replace("#{address}", json.data.address);
+                html = html.replace("#{date}", json.data.date);
                     $("#chance_td").append(html);
                 localStorage.setItem("cus" + 0, JSON.stringify(json.data))
             }
@@ -172,7 +214,7 @@ $("#update_sub").click(function () {
     var forData = $("#shoop_update").serialize();
     forData = decodeURIComponent(forData, true);
     $.ajax({
-        url: "../shoop/update",
+        url: "../personnel/update",
         data: forData,
         type: "POST",
         dataType: "json",
