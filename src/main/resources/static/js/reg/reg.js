@@ -2,7 +2,7 @@ $("#btn-reg").click(function () {
     var forData = $("#form-reg").serialize();
     forData = decodeURIComponent(forData, true);
     console.log(forData)
-  var token=getCookie("token")
+    var token=getCookie("token")
     console.log(token)
     $.ajax({
         url: "../user/reg",
@@ -18,7 +18,7 @@ $("#btn-reg").click(function () {
             if (json.code ==200) {
                 alert("注册成功");
                 location.href="index.html";
-               // window.location.reload(true);
+                // window.location.reload(true);
             } else {
                 alert(json.message);
             }
