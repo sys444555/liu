@@ -2,6 +2,7 @@ package com.jckc_backer.controller;
 
 import com.jckc_backer.model.ResultMap;
 import org.apache.shiro.ShiroException;
+import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -26,6 +27,14 @@ public class ExceptionController {
     public ResultMap handle401() {
         return resultMap.fail().code(401).message("您没有权限访问！");
     }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResultMap handleAuthenticationException(){
+        System.out.println("hello");
+        return resultMap.fail().code(403).message("认证过期,请重新登录");
+
+    }
+
 
     // 捕捉其他所有异常
     @ExceptionHandler(Exception.class)

@@ -15,6 +15,7 @@ $("#btn-login").click(function () {
             if (json.code == 200) {
 
                 setCookie("token",json.message);
+
                /* var expiresDate= new Date();
                 expiresDate.setTime(expiresDate.getTime() + (60*60*1000));
                 $.cookie("token",json.message,{expires:expiresDate});*/

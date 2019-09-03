@@ -37,7 +37,7 @@ public class CustomRealm extends AuthorizingRealm {
      * 默认使用此方法进行用户名正确与否验证，错误抛出异常即可。
      */
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)  throws AuthenticationException{
         System.out.println("————身份认证方法————");
         String token = (String) authenticationToken.getCredentials();
         System.out.println("token:"+token);
@@ -48,6 +48,7 @@ public class CustomRealm extends AuthorizingRealm {
             throw new AuthenticationException("token认证失败！");
         }
         String password = userMapper.getPassword(username);
+
         if (password == null) {
             throw new AuthenticationException("该用户不存在！");
         }

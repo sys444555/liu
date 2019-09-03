@@ -40,6 +40,7 @@ public class LoginController {
         } else if (!realPassword.equals(password)) {
             return resultMap.fail().code(401).message("密码错误");
         } else {
+
             String token=jwtUtil.createToken(username);
 
             return resultMap.success().code(200).message(token);

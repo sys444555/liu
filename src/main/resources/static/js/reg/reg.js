@@ -21,6 +21,8 @@ $("#btn-reg").click(function () {
                // window.location.reload(true);
             } else {
                 alert(json.message);
+                location.href="login.html";
+
             }
         },
         "error":function(){
