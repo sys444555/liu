@@ -7,9 +7,6 @@ $("#btn-login").click(function () {
     $.ajax({
         url: "../login",
         data: forData,
-        headers: {
-            "token":token
-        },
         type: "POST",
         dataType: "json",
         success: function (json) {

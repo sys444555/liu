@@ -31,9 +31,9 @@ public class LoginController {
     @PostMapping("/login")
     public ResultMap login(@RequestParam(value = "username") String username,
                            @RequestParam(value = "password") String password,
-                           HttpServletRequest request) throws InterruptedException {
+                           HttpServletRequest request) {
         request.getSession().setAttribute("uid", 1);
-        Thread.sleep(100000);
+
         String realPassword = userMapper.getPassword(username);
         if (realPassword == null) {
             return resultMap.fail().code(401).message("用户名错误");

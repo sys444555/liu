@@ -39,7 +39,7 @@ public class JWTUtil {
             // 附带username信息
             String token=JWT.create()
                     .withClaim("username", username)
-                    .withClaim("jwtid", jwtid)
+                    .withClaim("jwt-id", jwtid)
                     //到期时间
                     .withExpiresAt(date)
                     //创建一个新的JWT，并使用给定的算法进行标记
@@ -62,6 +62,7 @@ public class JWTUtil {
         try {
             //1 . 根据token解密，解密出jwt-id , 先从redis中查找出redisToken，匹配是否相同
             String redisToken =  (String) redisUtil.get("JWT-SESSION-" + getJwtIdByToken(token));
+            System.out.println("redisToken = " + redisToken);
             if (!redisToken.equals(token)) {
                 return false;
             }
