@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jckc_backer.modules.personnel.mapper.PersonnelMapper">
+
+<select id="selectByName" resultType="com.jckc_backer.modules.personnel.entity.PersonnelEntity">
+    select id,username,sex,age,phone,qq,wexin,email,status,address,date
+    from personnel
+    where username=#{username}
+</select>
+
+</mapper>
