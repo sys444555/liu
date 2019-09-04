@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.Max;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLSyntaxErrorException;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/upload")
@@ -60,7 +63,8 @@ public class FileUploadController {
             pictureEntity.setDateAdd(new Date());
             pictureEntity.setPicUrl(filename);
             pictureService.insertPicture(pictureEntity);
-            return ResponseUtil.success();
+            System.out.println(pictureEntity.getId());
+            return ResponseUtil.success(pictureEntity.getId());
         } catch (IOException e) {
             e.printStackTrace();
             return ResponseUtil.error();

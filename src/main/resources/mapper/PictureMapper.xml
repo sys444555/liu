@@ -13,4 +13,12 @@
         WHERE type = #{type}
     </select>
 
+    <insert id="insertPictureEntity" >
+    insert into banner values(#{id},#{businessId},#{dateAdd},#{dateUpdate},#{linkUrl},#{paixu},#{picUrl},#{remark},
+    #{status},#{statusStr}),#{title}),#{type}),#{userId})
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
 </mapper>
