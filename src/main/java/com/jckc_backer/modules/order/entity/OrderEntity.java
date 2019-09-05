@@ -38,6 +38,52 @@ public class OrderEntity implements Serializable {
      */
     private String mobile;
 
+
+    @ApiModelProperty(value = "名字",name="name")
+    private String name;
+    /**
+     * 價錢
+     */
+    private BigDecimal minPrice;
+    /**
+     * 圖片
+     */
+    private String pic;
+
+    /**
+     * 數量
+     */
+    private Integer number;
+
+    /**
+     * 規格
+     */
+    private String specification;
+
+    /**
+     * 备注
+     */
+    private String remark;
+
+
+
+    @ApiModelProperty(value = "创建时间",name="createTime")
+    @TableField("create_time")
+    private Date createTime;
+
+    @ApiModelProperty(value = "状态",name="status")
+    @TableField("status")
+    private Integer status;
+
+
+    @ApiModelProperty(value = "商品金额",name="goodsPrice")
+    @TableField("goods_price")
+    private BigDecimal goodsPrice;
+
+    @ApiModelProperty(value = "实付金额",name="actualPrice")
+    @TableField("actual_price")
+    private BigDecimal actualPrice;
+
     /**
      * 地址
      */
@@ -64,29 +110,7 @@ public class OrderEntity implements Serializable {
     private String code;
 
     /**
-     * 备注
-     */
-    private String remark;
-
-    /**
      * 支付码
      */
     private String payId;
-
-    @ApiModelProperty(value = "创建时间",name="createTime")
-    @TableField("create_time")
-    private Date createTime;
-
-    @ApiModelProperty(value = "状态",name="status")
-    @TableField("status")
-    private Integer status;
-
-
-    @ApiModelProperty(value = "商品金额",name="goodsPrice")
-    @TableField("goods_price")
-    private BigDecimal goodsPrice;
-
-    @ApiModelProperty(value = "实付金额",name="actualPrice")
-    @TableField("actual_price")
-    private BigDecimal actualPrice;
 }

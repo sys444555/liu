@@ -1,6 +1,7 @@
 package com.jckc_backer.modules.order.service.impl;
 
 
+import com.jckc_backer.modules.order.entity.OrderDetailEntity;
 import com.jckc_backer.modules.order.entity.OrderEntity;
 import com.jckc_backer.modules.order.mapper.OrderMapper;
 import com.jckc_backer.modules.order.service.OrderService;
@@ -26,7 +27,7 @@ public class OrderServiceImpl  implements OrderService {
 
 
     @Override
-    public List<OrderEntity> orderList() {
+    public List<OrderEntity> getOrderList() {
         List<OrderEntity> orderList = orderMapper.getOrderList();
         return orderList;
     }
@@ -36,4 +37,10 @@ public class OrderServiceImpl  implements OrderService {
         List<OrderEntity> orderEntities = orderMapper.searchOrderList(searchName);
         return orderEntities;
     }
+
+    /*@Override
+    public List<OrderDetailEntity> getOrderDetailList(Integer id) {
+        List<OrderDetailEntity> orderDetailList = orderMapper.getOrderDetailList(id);
+        return orderDetailList;
+    }*/
 }
