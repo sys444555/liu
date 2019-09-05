@@ -51,9 +51,15 @@ $("#advertisement_btn").click(function () {
     formData.append("linkUrl","../Advertisement/Advertisement");
     formData.append("paixu",0);
     formData.append("status",0);
+
+    var token=getCookie("token")
+    console.log(token)
     $.ajax({
         url: "../upload/fileUpload",
         data: formData,
+        headers: {
+            "token":token
+        },
         type: "POST",
         dataType: "json",
         async:true,
@@ -71,7 +77,20 @@ $("#advertisement_btn").click(function () {
         }
     });
 });
+function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+    if(arr=document.cookie.match(reg)){
+        return unescape(arr[2]);
+    }
+    else{
+        return null;
+    }
+}
 function advertisement(id) {
+    var token=getCookie("token")
+    console.log(token)
     var formData = new FormData();
     formData.append('file', $('#advertisement_pic')[0].files[0]); // 固定格式
     formData.append("bannerId",id);
@@ -80,9 +99,13 @@ function advertisement(id) {
     formData.append("status",0);
     formData.append("statusStr","显示");
     formData.append("shopId",id);
+
     $.ajax({
         url: "../advertisement/insert",
         data: formData,
+        headers: {
+            "token":token
+        },
         type: "POST",
         dataType: "json",
         async:true,
@@ -99,6 +122,8 @@ function advertisement(id) {
 }
 
 $("#updown_btn").click(function () {
+    var token=getCookie("token")
+    console.log(token)
     var checkboxs=document.getElementsByName("checkbox");
     for (var i = 0; i < checkboxs.length; i++) {
         if( checkboxs[i].checked){
@@ -116,6 +141,9 @@ $("#updown_btn").click(function () {
         debugger;
         $.ajax({
             url: "../picture/updown/"+checkid,
+            headers: {
+                "token":token
+            },
             type: "POST",
             dataType: "json",
             async:true,

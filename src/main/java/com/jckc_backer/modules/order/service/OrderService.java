@@ -1,6 +1,5 @@
 package com.jckc_backer.modules.order.service;
 
-import com.jckc_backer.modules.order.entity.OrderDetailEntity;
 import com.jckc_backer.modules.order.entity.OrderEntity;
 
 import java.util.List;

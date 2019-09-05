@@ -2,7 +2,6 @@ package com.jckc_backer.modules.order.service.impl;
 
 
 import com.jckc_backer.common.exception.JcException;
-import com.jckc_backer.modules.order.entity.OrderDetailEntity;
 import com.jckc_backer.modules.order.entity.OrderEntity;
 import com.jckc_backer.modules.order.mapper.OrderMapper;
 import com.jckc_backer.modules.order.service.OrderService;

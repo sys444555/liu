@@ -1,7 +1,6 @@
 package com.jckc_backer.modules.order.mapper;
 
 
-import com.jckc_backer.modules.order.entity.OrderDetailEntity;
 import com.jckc_backer.modules.order.entity.OrderEntity;
 import org.apache.ibatis.annotations.Param;
 
