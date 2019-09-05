@@ -4,6 +4,7 @@ package com.jckc_backer.modules.order.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jckc_backer.common.utils.ResponseUtil;
+import com.jckc_backer.modules.order.entity.OrderDetailEntity;
 import com.jckc_backer.modules.order.entity.OrderEntity;
 import com.jckc_backer.modules.order.service.OrderService;
 import io.swagger.annotations.Api;
@@ -39,10 +40,22 @@ public class OrderController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResponseUtil getOrderList(int pageNo, int pageSize){
         PageHelper.startPage(pageNo, pageSize);
-        List<OrderEntity> orderList = orderService.orderList();
+        List<OrderEntity> orderList = orderService.getOrderList();
         PageInfo<OrderEntity> pageInfo = new PageInfo<>(orderList);
         return ResponseUtil.success(pageInfo);
     }
+
+    /**
+     * 获取订单詳情
+     * @return
+     *//*
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    public ResponseUtil getOrderDetail(int id){
+
+        List<OrderDetailEntity> orderList = orderService.getOrderDetailList(id);
+
+        return ResponseUtil.success(orderList);
+    }*/
 
     /**
      * 模糊查询订单
@@ -55,6 +68,18 @@ public class OrderController {
         PageInfo<OrderEntity> pageInfo = new PageInfo<>(orderList);
         return ResponseUtil.success(pageInfo);
     }
+
+    /**
+     * 更新订单快递
+     * @return
+     */
+    @RequestMapping(value = "/goods/update", method = RequestMethod.POST)
+    public ResponseUtil updateOrderGoods(int id, String  logisticsCompany, String logisticsOrderOn){
+        orderService.updateOrderGoods(id, logisticsCompany, logisticsOrderOn);
+        return ResponseUtil.success();
+    }
+
+
 
 
 }

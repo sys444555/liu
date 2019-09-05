@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>员工信息管理</title>
+    <title>订单管理</title>
 
     <!--<link rel="shortcut icon" href="../favicon.ico">-->
     <link href="../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
@@ -34,12 +34,10 @@
                 class="fa fa-remove"></i> 删除
         </button>
         <button class="btn btn-alter" data-toggle="modal" id="update" style="margin-top: 10px;"><i class="fa fa-eraser"></i>  修改</button>
+        <button class="btn btn-detail" data-toggle="modal" id="order_detail" style="margin-top: 10px;"><i class="fa fa-eraser"></i>  订单详情</button>
     </div>
 </div>
-<!--
 
-    描述：修改客户信息
--->
 <div class="modal" id="cus_chance_alter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto;">
     <div class="modal-dialog" id="cus_chance_dialog">
         <div class="modal-content" style="overflow: scroll; height: 500px; ">
@@ -118,6 +116,88 @@
                 </button>
                 <button type="button" class="btn btn-primary" id="update_sub">
                     提交保存
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+
+<div class="modal" id="order_detail_alter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto;">
+    <div class="modal-dialog" id="order_detail_dialog">
+        <div class="modal-content" style="overflow: scroll; height: 500px; ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">
+                    订单详情页面
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table width="100%" align="absbottom" class="order_detail_tb">
+                    <form id="personnel_detail" method="post">
+                        <tr>
+                            <td align="left">订单号：
+                                <span type="text"  name="orderOn" id="orderOn"></span>
+                            </td>
+                            <td align="right" >状态：
+                                <span type="text" name="status" id="status"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">联系人：
+                                <span type="text" name="linkMan" id="linkMan"></span>
+                            </td>
+                            <td align="right">手机号：
+                                <span name="mobile" id="mobile"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">省份：
+                                <span name="provinceStr" id="provinceStr"></span>
+                            </td>
+                            <td align="right">城市：
+                                <span name="cityStr" id="cityStr"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="absbottom">区域：
+                                <span name="districtStr" id="districtStr"></span>
+                            </td>
+                            <td align="absbottom">地址：
+                                <span name="address" id="address"></span>
+                            </td>
+                            <td align="absbottom">邮编：
+                                <span name="code" id="code"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="absbottom">商品总费用：
+                                <span name="goodsPrice" id="goodsPrice"></span>
+                            </td>
+                            <td align="absbottom">订单总费用：
+                                <span name="actualPrice" id="actualPrice"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">备注：
+                                <span name="remark" id="remark"></span>
+                            </td>
+                            <td align="center">支付码：
+                                <span name="payId" id="payId"></span>
+                            </td>
+                            <td align="right">下单时间：
+                                <span name="date" id="createTime"></span>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
             </div>
         </div>

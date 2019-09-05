@@ -111,6 +111,47 @@ $(function () {
     showChanceList(6)
 });
 
+$("#order_detail").click(function () {
+    var length = 0;
+    var checkId = "";
+    //所有的checkbox的list集合
+    var checkbox = document.getElementsByName("checkbox");
+    for (var i = 0; i < checkbox.length; i++) {
+        if( checkbox[i].checked){
+            length++;
+            checkId = checkbox[i];
+        }
+    }
+    if(length <= 0 || length > 1 ){
+        alert("请选择单条数据操作!!!")
+        checkId = "";
+        return;
+    }else{
+        $("#order_detail_alter").modal("show")
+        //获取当前被check的id  获取数据
+        var data = JSON.parse(localStorage.getItem(checkId.id));
+        console.log(data.orderOn)
+        $("#orderOn").html(data.orderOn);
+        $("#status").html(data.status);
+        $("#linkMan").html(data.linkMan);
+        $("#mobile").html(data.mobile);
+        $("#provinceStr").html(data.provinceStr);
+        $("#cityStr").html(data.cityStr);
+        $("#districtStr").html(data.districtStr);
+        $("#address").html(data.address);
+        $("#code").html(data.code);
+        $("#goodsPrice").html(data.goodsPrice);
+        $("#actualPrice").html(data.actualPrice);
+        $("#remark").html(data.remark);
+        $("#payId").html(data.payId);
+        $("#createTime").html(data.createTime);
+
+        //数据key 与对应的 id 进行数据绑定  包含cusId
+        //提交整个ajax请求到后台 包含cusId
+    }
+
+})
+
 $("#delete_btn").click(function () {
     var checkboxs=document.getElementsByName("checkbox");
     for (var i = 0; i < checkboxs.length; i++) {
@@ -266,6 +307,7 @@ $("#bt_name").click(function () {
     }
 
 });
+
 
 
 $("#update").click(function () {

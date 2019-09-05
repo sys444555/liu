@@ -1,6 +1,8 @@
 package com.jckc_backer.modules.order.service.impl;
 
 
+import com.jckc_backer.common.exception.JcException;
+import com.jckc_backer.modules.order.entity.OrderDetailEntity;
 import com.jckc_backer.modules.order.entity.OrderEntity;
 import com.jckc_backer.modules.order.mapper.OrderMapper;
 import com.jckc_backer.modules.order.service.OrderService;
@@ -26,8 +28,9 @@ public class OrderServiceImpl  implements OrderService {
 
 
     @Override
-    public List<OrderEntity> orderList() {
+    public List<OrderEntity> getOrderList() {
         List<OrderEntity> orderList = orderMapper.getOrderList();
+
         return orderList;
     }
 
@@ -36,4 +39,18 @@ public class OrderServiceImpl  implements OrderService {
         List<OrderEntity> orderEntities = orderMapper.searchOrderList(searchName);
         return orderEntities;
     }
+
+    @Override
+    public void updateOrderGoods(Integer id, String logisticsCompany, String logisticsOrderOn) {
+        Integer result = orderMapper.updateOrderGoods(id, logisticsCompany, logisticsOrderOn);
+        if(result == null || result != 1){
+            throw new JcException("更新快递单号失败");
+        }
+    }
+
+    /*@Override
+    public List<OrderDetailEntity> getOrderDetailList(Integer id) {
+        List<OrderDetailEntity> orderDetailList = orderMapper.getOrderDetailList(id);
+        return orderDetailList;
+    }*/
 }

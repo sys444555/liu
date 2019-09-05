@@ -1,5 +1,6 @@
 package com.jckc_backer.modules.order.service;
 
+import com.jckc_backer.modules.order.entity.OrderDetailEntity;
 import com.jckc_backer.modules.order.entity.OrderEntity;
 
 import java.util.List;
@@ -14,7 +15,11 @@ import java.util.List;
  */
 public interface OrderService {
 
-    public List<OrderEntity> orderList();
+    public List<OrderEntity> getOrderList();
 
     public List<OrderEntity> searchOrderList(String searchName);
+
+    //public List<OrderDetailEntity> getOrderDetailList(Integer id);
+
+    public void updateOrderGoods(Integer id, String logisticsCompany, String logisticsOrderOn);
 }
