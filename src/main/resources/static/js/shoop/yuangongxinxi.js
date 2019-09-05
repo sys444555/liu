@@ -24,13 +24,13 @@ $(function () {
                     html = html.replace("#{cusId}", "cus"+i);
                     html = html.replace("#{id}", i);
                     html = html.replace("#{username}", data.data.list[i].username);
-                    html = html.replace("#{sex}", data.data.list[i].sex);
+                    html = html.replace("#{sex}", $("#sex").children().eq(data.data.list[i].sex).html());
                     html = html.replace("#{age}", data.data.list[i].age);
                     html = html.replace("#{phone}", data.data.list[i].phone);
                     html = html.replace("#{qq}", data.data.list[i].qq);
                     html = html.replace("#{wexin}", data.data.list[i].wexin);
                     html = html.replace("#{email}", data.data.list[i].email);
-                    html = html.replace("#{status}", data.data.list[i].status);
+                    html = html.replace("#{status}", $("#status").children().eq(data.data.list[i].status).html());
                     html = html.replace("#{address}", data.data.list[i].address);
                     html = html.replace("#{date}", data.data.list[i].date);
                     $("#chance_td").append(html);
@@ -72,13 +72,13 @@ $(function () {
                                     html = html.replace("#{cusId}", "cus"+i);
                                     html = html.replace("#{id}", i);
                                     html = html.replace("#{username}", data.data.list[i].username);
-                                    html = html.replace("#{sex}", data.data.list[i].sex);
+                                    html = html.replace("#{sex}", $("#sex").children().eq(data.data.list[i].sex).html());
                                     html = html.replace("#{age}", data.data.list[i].age);
                                     html = html.replace("#{phone}", data.data.list[i].phone);
                                     html = html.replace("#{qq}", data.data.list[i].qq);
                                     html = html.replace("#{wexin}", data.data.list[i].wexin);
                                     html = html.replace("#{email}", data.data.list[i].email);
-                                    html = html.replace("#{status}", data.data.list[i].status);
+                                    html = html.replace("#{status}", $("#status").children().eq(data.data.list[i].status).html());
                                     html = html.replace("#{address}", data.data.list[i].address);
                                     html = html.replace("#{date}", data.data.list[i].date);
                                     $("#chance_td").append(html);
@@ -93,6 +93,52 @@ $(function () {
         })
     }
     showChanceList(6)
+});
+
+$("#personnel_btn").click(function () {
+    var formData = $("#personnel_add").serialize(); //取表单值 并进行序列化；此时formData已经是乱码了
+    formData = decodeURIComponent(formData, true);
+    console.log(formData);
+    $.ajax({
+        url: "../personnel/insert",
+        data: formData,
+        type: "POST",
+        dataType: "json",
+        async:true,
+        success: function (json) {
+            if (json.code == 0){
+                var html = '<tr>'
+                    + '<td class="bs-checkbox"  style="width: 36px;" data-field="state" tabindex="0"><input type="checkbox" name="checkbox"/></td>'
+                    + '<td>#{username}</td>'
+                    + '<td>#{sex}</td>'
+                    + '<td>#{age}</td>'
+                    + '<td>#{phone}</td>'
+                    + '<td>#{qq}</td>'
+                    + '<td>#{wexin}</td>'
+                    + '<td>#{email}</td>'
+                    + '<td>#{status}</td>'
+                    + '<td>#{address}</td>'
+                    + '<td>#{date}</td>'
+                    + '</tr>';
+
+                html = html.replace("#{username}", $("#username").val());
+                html = html.replace("#{sex}", $("#sex").val());
+                html = html.replace("#{age}", $("#age").val());
+                html = html.replace("#{phone}", $("#phone").val());
+                html = html.replace("#{qq}", $("#qq").val());
+                html = html.replace("#{wexin}", $("#wexin").val());
+                html = html.replace("#{email}", $("#email").val());
+                html = html.replace("#{status}", $("#status").val());
+                html = html.replace("#{address}", $("#address").val());
+                html = html.replace("#{date}", $("#date").val());
+                $("#chance_td").append(html);
+                $("#cus_chance_add").modal("hide");
+                window.location.reload(true);
+            } else {
+                alert(json.message);
+            }
+        }
+    });
 });
 
 $("#delete_btn").click(function () {
@@ -132,13 +178,15 @@ $("#delete_btn").click(function () {
 
 $("#bt_name").click(function () {
     var cname=$("#c_name").val();
+    console.log(cname)
     $.ajax({
         url: "../personnel/select/",
-        data: {username:cname},
+        data: {name:cname},
         type: "POST",
         dataType: "json",
         async:true,
         success: function (json) {
+            console.log(json)
             if (json.code == 0) {
                 if(json.data==null){
                     alert("没有这个客户信息");
@@ -201,17 +249,23 @@ $("#update").click(function () {
         var data = JSON.parse(localStorage.getItem(checkId.id));
 
         $("#id").val(data.id);
-        $("#name").val(data.name);
-        $("#phone").val(data.phone);
-        $("#fullAddress").val(data.fullAddress);
-
+        $("#p_username").val(data.username);
+        $("#p_sex").val(data.sex);
+        $("#p_age").val(data.age);
+        $("#p_phone").val(data.phone);
+        $("#p_date").val(data.date);
+        $("#p_qq").val(data.qq);
+        $("#p_wexin").val(data.wexin);
+        $("#p_email").val(data.email);
+        $("#p_status").val(data.status);
+        $("#p_address").val(data.address);
         //数据key 与对应的 id 进行数据绑定  包含cusId
         //提交整个ajax请求到后台 包含cusId
     }
 });
 
 $("#update_sub").click(function () {
-    var forData = $("#shoop_update").serialize();
+    var forData = $("#personnel_update").serialize();
     forData = decodeURIComponent(forData, true);
     $.ajax({
         url: "../personnel/update",

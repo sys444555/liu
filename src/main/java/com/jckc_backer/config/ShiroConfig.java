@@ -1,6 +1,5 @@
 package com.jckc_backer.config;
 
-
 import com.jckc_backer.filter.JWTFilter;
 import com.jckc_backer.shiro.CustomRealm;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
@@ -46,6 +45,8 @@ public class ShiroConfig {
         filterRuleMap.put("/**", "jwt");
         // 访问 /unauthorized/** 不通过JWTFilter
         filterRuleMap.put("/unauthorized/**", "anon");
+        // 退出系统的过滤器
+        /*filterRuleMap.put("/logout", "logout");*/
         factoryBean.setFilterChainDefinitionMap(filterRuleMap);
         return factoryBean;
     }
@@ -94,4 +95,31 @@ public class ShiroConfig {
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
+
+/*    @Bean
+    public LogoutSuccessHandler logoutSuccessHandler() { //登出处理
+        return new LogoutSuccessHandler() {
+            @Override
+            public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, org.springframework.security.core.Authentication authentication) throws IOException, ServletException {
+                try {
+                    RoleUserEntity user = (RoleUserEntity) authentication.getPrincipal();
+                    log.info("USER : " + user.getUsername() + " LOGOUT SUCCESS !  ");
+                } catch (Exception e) {
+                    log.info("LOGOUT EXCEPTION , e : " + e.getMessage());
+                }
+                httpServletResponse.sendRedirect("/login");
+            }
+
+        };
+    }*/
+
+/*
+    @Override
+    protected void configure(HttpSecurity http) throws Exception { //配置策略
+        http.csrf().disable();
+        http.authorizeRequests().
+                and().logout().permitAll().invalidateHttpSession(true);
+    }
+*/
+
 }

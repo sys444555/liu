@@ -18,4 +18,6 @@ public interface PictureMapper extends BaseMapper<PictureEntity> {
     List<PictureEntity> selectByType(String type);
 
     void updateStatus(Integer id);
+
+    void insertPictureEntity(PictureEntity pictureEntity);
 }

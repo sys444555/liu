@@ -32,6 +32,7 @@ public class PictureServiceImpl extends ServiceImpl<PictureMapper, PictureEntity
             pictureEntity.setRemark("");
         }
         pictureMapper.insert(pictureEntity);
+
     }
 
     @Override

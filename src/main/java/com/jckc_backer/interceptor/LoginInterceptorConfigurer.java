@@ -24,13 +24,10 @@ public class LoginInterceptorConfigurer
         excludePatterns.add("/static/bootstrap3/**");
         excludePatterns.add("/css/**");
         excludePatterns.add("/js/**");
-        excludePatterns.add("/images/**");
         excludePatterns.add("/fonts/**");
         excludePatterns.add("/img/**");
-        excludePatterns.add("/plugins/fullavatareditor/scripts/**");
         excludePatterns.add("/shoop/insert");
         excludePatterns.add("/shoop/select");
-        excludePatterns.add("/shoopdelete/{id}");
         excludePatterns.add("/shoop/update");
         excludePatterns.add("/reg/insert");
         excludePatterns.add("/login");
