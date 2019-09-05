@@ -30,104 +30,16 @@
                style="text-align:center;height:30px; line-height:30px;margin:10px 0px 10px 50px;">
         <input id="bt_name" type="button" value="搜索"
                style="text-align:center;height:30px; line-height:30px;margin:12px 0px 10px 10px;">
-        <button class="btn btn-delete" data-toggle="modal" data-target="#cus_chance_delete" style="margin-top: 10px;"><i
-                class="fa fa-remove"></i> 删除
-        </button>
-        <button class="btn btn-alter" data-toggle="modal" id="update" style="margin-top: 10px;"><i class="fa fa-eraser"></i>  修改</button>
         <button class="btn btn-detail" data-toggle="modal" id="order_detail" style="margin-top: 10px;"><i class="fa fa-eraser"></i>  订单详情</button>
     </div>
 </div>
 
-<div class="modal" id="cus_chance_alter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto;">
-    <div class="modal-dialog" id="cus_chance_dialog">
-        <div class="modal-content" style="overflow: scroll; height: 500px; ">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    ×
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    客户信息修改页面
-                </h4>
-            </div>
-            <div class="modal-body">
-                <table width="100%" align="center" class="cus_chance_tb">
-                    <form id="personnel_update" method="post">
-                        <input hidden="hidden" type="text" value="" id="id" name="id"/>
 
-                        <tr>
-                            <td align="center">姓名：
-                                <input type="text" name="username" id="p_username"/>
-                                <span style="color: red;">*</span>
-                            </td>
-                            <td align="absbottom" id="p_sex" name="sex">性别：
-                                <input type="radio" name="sex" value="0"/>男
-                                <input type="radio" name="sex" value="1"/>女&nbsp;
-                                <span style="color: red;">*</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="center">状态：
-                                <select style="width: 250px;" id="p_status" name="status">
-                                    <option></option>
-                                    <option value="0">在职</option>
-                                    <option value="1">离职</option>
-                                </select>
-                            </td>
-                            <td align="absbottom">年龄：
-                                <input type="text" name="age" id="p_age"/>
-                                <span style="color: red;">*</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="center">手机号：
-                                <input type="text" name="phone" id="p_phone"/>
-                                <span style="color: red;">*</span>
-                            </td>
-                            <td align="absbottom">QQ：
-                                <input type="text" name="qq" id="p_qq"/>
-                                <span style="color: red;">*</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="absbottom">微信：
-                                <input type="text" style="width: 144px;" name="wexin" id="p_wexin"/>
-                                <span style="color: red;">*</span>
-                            </td>
-                            <td align="absbottom">邮箱：
-                                <input type="text" style="width: 144px;" name="email" id="p_email"/>
-                                <span style="color: red;">*</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="absbottom">家庭地址：
-                                <input type="text" style="width: 144px;" name="address" id="p_address"/>
-                                <span style="color: red;">*</span>
-                            </td>
-                            <td align="absbottom">入职时间：
-                                <input type="date" style="width: 144px;" name="date" id="p_date"/>
-                                <span style="color: red;">*</span>
-                            </td>
-                        </tr>
-                    </form>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-primary" id="update_sub">
-                    提交保存
-                </button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal -->
-</div>
 
 
 <div class="modal" id="order_detail_alter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto;">
     <div class="modal-dialog" id="order_detail_dialog">
-        <div class="modal-content" style="overflow: scroll; height: 500px; ">
+        <div class="modal-content" align="center" style="overflow: scroll; height: 500px; width: 800px">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     ×
@@ -143,7 +55,7 @@
                             <td align="left">订单号：
                                 <span type="text"  name="orderOn" id="orderOn"></span>
                             </td>
-                            <td align="right" >状态：
+                            <td align="absbottom" >状态：
                                 <span type="text" name="status" id="status"></span>
                             </td>
                         </tr>
@@ -151,54 +63,90 @@
                             <td align="left">联系人：
                                 <span type="text" name="linkMan" id="linkMan"></span>
                             </td>
-                            <td align="right">手机号：
+                            <td align="absbottom">手机号：
                                 <span name="mobile" id="mobile"></span>
                             </td>
                         </tr>
                         <tr>
-                            <td align="left">省份：
-                                <span name="provinceStr" id="provinceStr"></span>
+                            <td align="left">商品名：
+                                <span name="name" id="name"></span>
                             </td>
-                            <td align="right">城市：
-                                <span name="cityStr" id="cityStr"></span>
+                            <td align="absbottom">图片：
+                                <span name="pic" ><img id="pic" src=""/></span>
                             </td>
                         </tr>
                         <tr>
-                            <td align="absbottom">区域：
-                                <span name="districtStr" id="districtStr"></span>
+                            <td align="left">价格：
+                                <span name="minPrice" id="minPrice"></span>
                             </td>
-                            <td align="absbottom">地址：
-                                <span name="address" id="address"></span>
+                            <td align="absbottom">数量：
+                                <span name="number" id="number"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">规格：
+                                <span name="specification" id="specification"></span>
+                            </td>
+                            <td align="absbottom">备注：
+                                <span name="remark" id="remark"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="lett">商品总费用：¥
+                                <span name="goodsPrice" id="goodsPrice"></span>
+                            </td>
+                            <td align="absbottom">订单总费用：¥
+                                <span name="actualPrice" id="actualPrice"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">支付码：
+                                <span name="payId" id="payId"></span>
                             </td>
                             <td align="absbottom">邮编：
                                 <span name="code" id="code"></span>
                             </td>
                         </tr>
                         <tr>
-                            <td align="absbottom">商品总费用：
-                                <span name="goodsPrice" id="goodsPrice"></span>
+                            <td align="left">省份：
+                                <span name="provinceStr" id="provinceStr"></span>
                             </td>
-                            <td align="absbottom">订单总费用：
-                                <span name="actualPrice" id="actualPrice"></span>
+                            <td align="absbottom">城市：
+                                <span name="cityStr" id="cityStr"></span>
                             </td>
                         </tr>
                         <tr>
-                            <td align="left">备注：
-                                <span name="remark" id="remark"></span>
+                            <td align="left">区域：
+                                <span name="districtStr" id="districtStr"></span>
                             </td>
-                            <td align="center">支付码：
-                                <span name="payId" id="payId"></span>
+                            <td align="absbottom">地址：
+                                <span name="address" id="address"></span>
                             </td>
-                            <td align="right">下单时间：
+                        </tr>
+                        <tr>
+                            <td align="left">下单时间：
                                 <span name="date" id="createTime"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">快递公司：
+                                <input type="text" style="width: 144px;" name="logisticsCompany" id="logisticsCompany"/>
+                            </td>
+                            <td align="absbottom">快递单号：
+                                <input type="text" style="width: 200px;" name="logisticsOrderOn" id="logisticsOrderOn"/>
                             </td>
                         </tr>
                     </form>
                 </table>
+
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="update_order">
+                    提交保存
+                </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
+
             </div>
         </div>
         <!-- /.modal-content -->
@@ -243,19 +191,13 @@
             <th>状态</th>
             <th>联系人</th>
             <th>手机号</th>
-            <th>省份</th>
-            <th>城市</th>
-            <th>区域</th>
-            <th>地址</th>
-            <th>邮编</th>
-            <th>商品总费用</th>
-            <th>订单总费用</th>
-            <th>备注</th>
-            <th>支付码</th>
+            <th>商品名字</th>
+            <th>图片</th>
+            <th>规格</th>
             <th>下单时间</th>
         </tr>
         </thead>
-        <tbody style="text-align: center;" id="order_td">
+        <tbody style=" text-align: center;" id="order_td">
 
         </tbody>
     </table>
