@@ -11,12 +11,15 @@
 		<result property="actualPrice" column="actual_price"/>
 		<result property="goodsPrice" column="goods_price"/>
 		<result property="remark" column="remark"/>
+		<result property="orderId" column="order_id"></result>
 		<result property="linkMan" column="link_man"/>
 		<result property="mobile" column="mobile"/>
 		<result property="name" column="name"/>
 		<result property="minPrice" column="min_price"/>
 		<result property="pic" column="pic"/>
 		<result property="number" column="number"/>
+		<result property="logisticsCompany" column="logistics_company"/>
+		<result property="logisticsOrderOn" column="logistics_order_on"/>
 		<result property="specification" column="specification"/>
 		<result property="address" column="address"/>
 		<result property="provinceStr" column="province_str"/>
@@ -37,26 +40,28 @@
 	</resultMap>-->
 
 	<select id="getOrderList" resultMap="orderMap">
-        SELECT a.id,a.status,a.order_on,a.actual_price,a.goods_price,
+        SELECT b.id,a.status,a.order_on,a.actual_price,a.goods_price,b.order_id,
         d.link_man,d.mobile,c.name,c.min_price,c.pic,b.number,b.specification,a.remark,a.create_time,
-        d.address, d.province_str,d.city_str,d.district_str,d.code,a.pay_id
+        d.address, d.province_str,d.city_str,d.district_str,d.code,a.pay_id,b.logistics_order_on,b.logistics_company
         FROM order_user a LEFT JOIN order_goods b ON a.id = b.order_id
 		LEFT JOIN shop c ON b.goods_id = c.id
-		LEFT JOIN address d ON a.address_id = b.id
+		LEFT JOIN address d ON a.address_id = d.id
         ORDER BY a.create_time DESC
     </select>
 
 	<select id="searchOrderList"  resultMap="orderMap">
-        SELECT a.id,a.status,a.order_on,a.actual_price,a.goods_price,b.link_man,b.mobile,b.address,
-        b.province_str,b.city_str,b.district_str,b.code,a.pay_id,a.remark,a.create_time
-        FROM  order_user a
-        LEFT JOIN address b ON a.address_id = b.id
+        SELECT b.id,a.status,a.order_on,a.actual_price,a.goods_price,b.order_id,
+		d.link_man,d.mobile,c.name,c.min_price,c.pic,b.number,b.specification,a.remark,a.create_time,
+		d.address, d.province_str,d.city_str,d.district_str,d.code,a.pay_id,b.logistics_order_on,b.logistics_company
+		FROM order_user a LEFT JOIN order_goods b ON a.id = b.order_id
+		LEFT JOIN shop c ON b.goods_id = c.id
+		LEFT JOIN address d ON a.address_id = d.id
         WHERE 1=1
         <if test="searchName != null">
 			AND a.order_on LIKE '%${searchName}%'
 		</if>
 		<if test="searchName != null">
-			OR b.link_man LIKE '%${searchName}%'
+			OR d.link_man LIKE '%${searchName}%'
 		</if>
         ORDER BY a.create_time DESC
     </select>
@@ -67,5 +72,10 @@
         LEFT JOIN address b ON a.address_id = b.id
 		WHERE a.id = #{id}
 	</select>-->
+
+	<update id="updateOrderGoods">
+		UPDATE order_goods SET logistics_company = #{logisticsCompany}, logistics_order_on = #{logisticsOrderOn}
+		WHERE id = #{id}
+	</update>
 
 </mapper>

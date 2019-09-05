@@ -22,4 +22,8 @@ public interface OrderMapper  {
     public List<OrderEntity> searchOrderList(@Param(value = "searchName") String searchName);
 
     //public List<OrderDetailEntity> getOrderDetailList(@Param(value = "id") Integer id);
+
+    public Integer updateOrderGoods(@Param(value = "id") Integer id,
+                                    @Param(value = "logisticsCompany") String logisticsCompany,
+                                    @Param(value = "logisticsOrderOn") String logisticsOrderOn);
 }

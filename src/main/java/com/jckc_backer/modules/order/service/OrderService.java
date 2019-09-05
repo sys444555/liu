@@ -20,4 +20,6 @@ public interface OrderService {
     public List<OrderEntity> searchOrderList(String searchName);
 
     //public List<OrderDetailEntity> getOrderDetailList(Integer id);
+
+    public void updateOrderGoods(Integer id, String logisticsCompany, String logisticsOrderOn);
 }

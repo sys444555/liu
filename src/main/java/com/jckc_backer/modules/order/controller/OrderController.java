@@ -69,6 +69,16 @@ public class OrderController {
         return ResponseUtil.success(pageInfo);
     }
 
+    /**
+     * 更新订单快递
+     * @return
+     */
+    @RequestMapping(value = "/goods/update", method = RequestMethod.POST)
+    public ResponseUtil updateOrderGoods(int id, String  logisticsCompany, String logisticsOrderOn){
+        orderService.updateOrderGoods(id, logisticsCompany, logisticsOrderOn);
+        return ResponseUtil.success();
+    }
+
 
 
 

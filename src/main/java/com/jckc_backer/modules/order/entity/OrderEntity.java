@@ -55,6 +55,8 @@ public class OrderEntity implements Serializable {
      */
     private Integer number;
 
+    private Integer orderId;
+
     /**
      * 規格
      */
@@ -64,6 +66,10 @@ public class OrderEntity implements Serializable {
      * 备注
      */
     private String remark;
+
+    private String logisticsCompany;
+
+    private String logisticsOrderOn;
 
 
 
