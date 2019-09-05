@@ -4,7 +4,7 @@
 <!-- Mirrored from www.zi-han.net/theme/hplus/table_data_tables.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:01 GMT -->
 
 <head>
-    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -22,16 +22,55 @@
     <link href="../css/other.css" rel="stylesheet"/>
     <link href="../css/city/cityselect.css" rel="stylesheet"/>
     <link href="../css/pagination.css"/>
-
 </head>
 <body class="gray-bg">
 <div class="btn-toolbar" style="margin-left: 1px; background-color: ghostwhite; margin: 0 auto;">
-    <div class="btn-group" style="margin-left: 10px;">
-        <button class="btn btn-delete" data-toggle="modal" data-target="#cus_chance_delete" style="margin-top: 10px;"><i
-                class="fa fa-remove"></i> 删除
-        </button>
-        <button class="btn btn-add" data-toggle="modal" data-target="#cus_all_add" style="margin:10px;"><i class="fa fa-plus"></i>  添加</button>
+    <!--<div class="btn-group" style="margin-left: 10px;">-->
+        <!--<button class="btn btn-delete" data-toggle="modal" data-target="#cus_chance_delete" style="margin-top: 10px;"><i-->
+                <!--class="fa fa-remove"></i> 删除-->
+        <!--</button>-->
+        <!--<button class="btn btn-add" data-toggle="modal" data-target="#cus_all_add" style="margin:10px;"><i class="fa fa-plus"></i>  添加</button>-->
+        <!--<button class="btn btn-alter" data-toggle="modal" id="update" style="margin-top: 10px;"><i class="fa fa-eraser"></i>  修改</button>-->
+    <!--</div>-->
+</div>
+
+<!--
+    描述：修改价格信息
+-->
+<div class="modal" id="cus_chance_alter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto;">
+    <div class="modal-dialog" id="cus_chance_dialog">
+        <div class="modal-content" style="overflow: scroll; height: 500px; ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    产品信息修改页面
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table width="100%" align="center" class="cus_chance_tb">
+                    <form id="shop_update" method="post">
+                        <input hidden="hidden" type="text" value="" id="id" name="id"/>
+                        <tr>
+                            <td align="center">产品名称：
+                                <input type="text" name="shop" id="shop_name"/>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="update_sub">
+                    提交保存
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
     </div>
+    <!-- /.modal -->
 </div>
 
 <!--
@@ -47,15 +86,15 @@
                     ×
                 </button>
                 <h4 class="modal-title" id="myModalLabel2">
-                    图片添加页面
+                    客户信息增加页面
                 </h4>
             </div>
             <div class="modal-body">
                 <table width="100%" align="center" class="cus_all_tb">
-                    <form id="picture_add" method="post" enctype="multipart/form-data">
+                    <form id="shop_add" method="post">
                         <tr>
-                            <td align="center">图片：
-                                <input type="file" id="pictureAddress" name="pictureAddress"/>
+                            <td align="center">：产品名称
+                                <input type="text" placeholder="产品名称" id="shop" name="shop"/>
                             </td>
                         </tr>
                     </form>
@@ -64,7 +103,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary" id="picture_btn">
+                <button type="button" class="btn btn-primary" id="shop_btn">
                     提交更改
                 </button>
             </div>
@@ -106,10 +145,14 @@
         <tr>
             <th></th>
             <th>序号</th>
-            <th>图片</th>
+            <th>产品信息</th>
+            <th>客户名字</th>
+            <th>客户联系电话</th>
+            <th>性别</th>
+            <th>客户状态</th>
         </tr>
         </thead>
-        <tbody style="text-align: center;" id="chance_td">
+        <tbody style="text-align: center;" id="vip_td">
 
         </tbody>
     </table>
@@ -124,8 +167,8 @@
 <script src="../js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="../js/content.min.js?v=1.0.0"></script>
 <script src="../js/cityselect.js"></script>
+<script src="../js/vip/vip.js"></script>
 <script src="../js/jquery.pagination.js"></script>
-<script src="../js/management/picture.js"></script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=178642170" charset="UTF-8"></script>
 </body>
 

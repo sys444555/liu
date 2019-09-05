@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jckc_backer.modules.order.mapper.OrderMapper">
+	<!-- User findByUsername(String username) -->
+
+	<resultMap type="com.jckc_backer.modules.order.entity.OrderEntity" id="orderMap">
+		<result property="id" column="id"/>
+		<result property="status" column="status"/>
+		<result property="orderOn" column="order_on"/>
+		<result property="actualPrice" column="actual_price"/>
+		<result property="goodsPrice" column="goods_price"/>
+		<result property="remark" column="remark"/>
+		<result property="linkMan" column="link_man"/>
+		<result property="mobile" column="mobile"/>
+		<result property="address" column="address"/>
+		<result property="provinceStr" column="province_str"/>
+		<result property="cityStr" column="city_str"/>
+		<result property="districtStr" column="district_str"/>
+		<result property="code" column="code"/>
+		<result property="payId" column="pay_id"/>
+		<result property="createTime" column="create_time"/>
+	</resultMap>
+
+	<select id="getOrderList" resultMap="orderMap">
+        SELECT a.id,a.status,a.order_on,a.actual_price,a.goods_price,b.link_man,b.mobile,b.address,
+        b.province_str,b.city_str,b.district_str,b.code,a.pay_id,a.remark,a.create_time
+        FROM  order_user a
+        LEFT JOIN address b ON a.address_id = b.id
+        ORDER BY a.create_time DESC
+    </select>
+
+	<select id="searchOrderList"  resultMap="orderMap">
+        SELECT a.id,a.status,a.order_on,a.actual_price,a.goods_price,b.link_man,b.mobile,b.address,
+        b.province_str,b.city_str,b.district_str,b.code,a.pay_id,a.remark,a.create_time
+        FROM  order_user a
+        LEFT JOIN address b ON a.address_id = b.id
+        WHERE 1=1
+        <if test="searchName != null">
+			AND a.order_on LIKE '%${searchName}%'
+		</if>
+		<if test="searchName != null">
+			OR b.link_man LIKE '%${searchName}%'
+		</if>
+        ORDER BY a.create_time DESC
+    </select>
+
+</mapper>
