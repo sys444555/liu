@@ -265,12 +265,15 @@ $("#update_order").click(function () {
         alert("请输入快递单号");
         return
     }
-
+    var token=getCookie("token")
     $.ajax({
         url: "../order/goods/update",
         data: {id:id,logisticsCompany:logisticsCompany,logisticsOrderOn:logisticsOrderOn},
         type: "POST",
         dataType: "json",
+        headers: {
+            "token":token
+        },
         async:true,
         success: function (json) {
             if (json.code == 0) {
@@ -279,8 +282,24 @@ $("#update_order").click(function () {
                 window.location.reload(true);
             } else {
                 alert(json.message);
+                if(json.code = 401){
+                    location.href="login.html";
+                }
             }
         }
+
+
     })
 
 })
+function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+    if(arr=document.cookie.match(reg)){
+        return unescape(arr[2]);
+    }
+    else{
+        return null;
+    }
+}

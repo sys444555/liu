@@ -45,7 +45,7 @@ public class CustomRealm extends AuthorizingRealm {
         String username = jwtUtil.getUsername(token);
         System.out.println(username);
         if (username == null || !jwtUtil.verify(token, username)) {
-            throw new AuthenticationException("token认证失败！");
+            throw new AuthenticationException("token已过期,请重新登录！");
         }
         String password = userMapper.getPassword(username);
 

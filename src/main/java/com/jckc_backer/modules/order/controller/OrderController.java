@@ -8,6 +8,9 @@ import com.jckc_backer.modules.order.entity.OrderDetailEntity;
 import com.jckc_backer.modules.order.entity.OrderEntity;
 import com.jckc_backer.modules.order.service.OrderService;
 import io.swagger.annotations.Api;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -74,6 +77,8 @@ public class OrderController {
      * @return
      */
     @RequestMapping(value = "/goods/update", method = RequestMethod.POST)
+    @RequiresRoles(logical = Logical.OR, value = {"admin"})
+    @RequiresPermissions("vip")
     public ResponseUtil updateOrderGoods(int id, String  logisticsCompany, String logisticsOrderOn){
         orderService.updateOrderGoods(id, logisticsCompany, logisticsOrderOn);
         return ResponseUtil.success();

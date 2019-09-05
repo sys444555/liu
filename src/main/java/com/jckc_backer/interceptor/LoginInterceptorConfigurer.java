@@ -26,10 +26,6 @@ public class LoginInterceptorConfigurer
         excludePatterns.add("/js/**");
         excludePatterns.add("/fonts/**");
         excludePatterns.add("/img/**");
-        excludePatterns.add("/shoop/insert");
-        excludePatterns.add("/shoop/select");
-        excludePatterns.add("/shoop/update");
-        excludePatterns.add("/reg/insert");
         excludePatterns.add("/login");
         excludePatterns.add("/page/login");
         excludePatterns.add("/usr/local/ngnix/html/pic/img/shopImg/**");
