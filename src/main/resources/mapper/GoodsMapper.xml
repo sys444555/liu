@@ -35,7 +35,7 @@
 		WHERE a.id = b.sid AND b.specification='尺寸' AND b.goods_id=#{id}
 	</select>
 
-	<select id="getCategoryId" resultType="int">
+	<select id="getCategoryId" resultType="Integer">
 		SELECT id FROM category WHERE name=#{name}
 
 	</select>

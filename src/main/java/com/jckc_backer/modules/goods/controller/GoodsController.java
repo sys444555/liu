@@ -73,7 +73,8 @@ public class GoodsController {
             goodsEntity.setPic(filename);
             String name=goodsEntity.getCategoryName();
             System.out.println(name);
-            goodsService.getCategoryIdByName(name);
+           Integer t= goodsService.getCategoryIdByName(name);
+           System.out.println(t);
             /*pictureService.insertPicture(pictureEntity);*/
             return ResponseUtil.success();
         } catch (IOException e) {
