@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jckc_backer.modules.goods.mapper.GoodsMapper">
+	<!-- User findByUsername(String username) -->
+
+	<resultMap type="com.jckc_backer.modules.goods.entity.GoodsEntity" id="goodsMap">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="categoryName" column="category_name"></result>
+		<result property="colour" column="colour"/>
+		<result property="size" column="size"/>
+		<result property="minPrice" column="min_price"/>
+		<result property="dateAdd" column="date_add"/>
+		<result property="pic" column="pic"/>
+	</resultMap>
+
+	<resultMap id="specificationMap" type="com.jckc_backer.modules.goods.entity.Specification">
+		<result property="value" column="value"/>
+	</resultMap>
+
+	<select id="getGoodsList" resultMap="goodsMap">
+		SELECT a.id,a.name,b.name AS category_name , a.min_price, a.date_add , a.pic FROM shop a
+		LEFT JOIN category b ON a.category_id = b.id
+
+	</select>
+
+	<select id="getColourList" resultMap="specificationMap">
+		SELECT b.value FROM goods_specification a , goods_specification b
+		WHERE a.id = b.sid AND b.specification='颜色' AND b.goods_id=#{id}
+	</select>
+
+	<select id="getSizeList" resultMap="specificationMap">
+		SELECT b.value FROM goods_specification a , goods_specification b
+		WHERE a.id = b.sid AND b.specification='尺寸' AND b.goods_id=#{id}
+	</select>
+
+</mapper>

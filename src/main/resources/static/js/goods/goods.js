@@ -1,7 +1,7 @@
 $(function () {
     function showChanceList() {
         $.ajax({
-            url: "../personnel/list",
+            url: "../goods/list",
             data: {pageNo: 1, pageSize: 20},
             type: "get",
             dataType: "json",
@@ -10,30 +10,26 @@ $(function () {
                     var html = '<tr>'
                         + '<td class="bs-checkbox"  style="width: 36px;" data-field="state" tabindex="0"><input id="#{cusId}" type="checkbox" name="checkbox"/></td>'
                         + '<td>#{id}</td>'
-                        + '<td>#{username}</td>'
-                        + '<td>#{sex}</td>'
-                        + '<td>#{age}</td>'
-                        + '<td>#{phone}</td>'
-                        + '<td>#{qq}</td>'
-                        + '<td>#{wexin}</td>'
-                        + '<td>#{email}</td>'
-                        + '<td>#{status}</td>'
-                        + '<td>#{address}</td>'
-                        + '<td>#{date}</td>'
+                        + '<td>#{goodsId}</td>'
+                        + '<td>#{name}</td>'
+                        + '<td>#{specification}</td>'
+                        + '<td>#{colour}</td>'
+                        + '<td>#{size}</td>'
+                        + '<td>#{minPrice}</td>'
+                        + '<td><img src="#{pic}"/></td>'
+                        + '<td>#{dateAdd}</td>'
                         + '</tr>';
                     html = html.replace("#{cusId}", "cus"+i);
-                    html = html.replace("#{id}", i);
-                    html = html.replace("#{username}", data.data.list[i].username);
-                    html = html.replace("#{sex}", $("#sex").children().eq(data.data.list[i].sex).html());
-                    html = html.replace("#{age}", data.data.list[i].age);
-                    html = html.replace("#{phone}", data.data.list[i].phone);
-                    html = html.replace("#{qq}", data.data.list[i].qq);
-                    html = html.replace("#{wexin}", data.data.list[i].wexin);
-                    html = html.replace("#{email}", data.data.list[i].email);
-                    html = html.replace("#{status}", $("#status").children().eq(data.data.list[i].status).html());
-                    html = html.replace("#{address}", data.data.list[i].address);
-                    html = html.replace("#{date}", data.data.list[i].date);
-                    $("#chance_td").append(html);
+                    html = html.replace("#{id}", i+1);
+                    html = html.replace("#{goodsId}", data.data.list[i].id == null ? '':  data.data.list[i].id);
+                    html = html.replace("#{name}", data.data.list[i].name == null ? '':  data.data.list[i].name);
+                    html = html.replace("#{colour}", data.data.list[i].colour == null ? '':  data.data.list[i].colour);
+                    html = html.replace("#{size}", data.data.list[i].size == null ? '':  data.data.list[i].size);
+                    html = html.replace("#{specification}", data.data.list[i].specification == null ? '':  data.data.list[i].specification);
+                    html = html.replace("#{minPrice}", data.data.list[i].minPrice == null ? '':  data.data.list[i].minPrice);
+                    html = html.replace("#{pic}", data.data.list[i].pic == null ? '':  data.data.list[i].pic);
+                    html = html.replace("#{dateAdd}", data.data.list[i].dateAdd == null ? '':  data.data.list[i].dateAdd);
+                    $("#goods_td").append(html);
                     localStorage.setItem("cus" + i, JSON.stringify(data.data.list[i]))
                 }
 
@@ -49,7 +45,7 @@ $(function () {
                     callback: function (api) {
                         $("#chance_td").empty();
                         $.ajax({
-                            url: "../personnel/list",
+                            url: "../goods/list",
                             data: {pageNo: api.getCurrent(), pageSize: 20},
                             type: "get",
                             dataType: "json",
@@ -58,31 +54,27 @@ $(function () {
                                     var html = '<tr>'
                                         + '<td class="bs-checkbox"  style="width: 36px;" data-field="state" tabindex="0"><input id="#{cusId}" type="checkbox" name="checkbox"/></td>'
                                         + '<td>#{id}</td>'
-                                        + '<td>#{username}</td>'
-                                        + '<td>#{sex}</td>'
-                                        + '<td>#{age}</td>'
-                                        + '<td>#{phone}</td>'
-                                        + '<td>#{qq}</td>'
-                                        + '<td>#{wexin}</td>'
-                                        + '<td>#{email}</td>'
-                                        + '<td>#{status}</td>'
-                                        + '<td>#{address}</td>'
-                                        + '<td>#{date}</td>'
+                                        + '<td>#{goodsId}</td>'
+                                        + '<td>#{specification}</td>'
+                                        + '<td>#{name}</td>'
+                                        + '<td>#{colour}</td>'
+                                        + '<td>#{size}</td>'
+                                        + '<td>#{minPrice}</td>'
+                                        + '<td><img src="#{pic}"/></td>'
+                                        + '<td>#{dateAdd}</td>'
                                         + '</tr>';
                                     html = html.replace("#{cusId}", "cus"+i);
-                                    html = html.replace("#{id}", i);
-                                    html = html.replace("#{username}", data.data.list[i].username);
-                                    html = html.replace("#{sex}", $("#sex").children().eq(data.data.list[i].sex).html());
-                                    html = html.replace("#{age}", data.data.list[i].age);
-                                    html = html.replace("#{phone}", data.data.list[i].phone);
-                                    html = html.replace("#{qq}", data.data.list[i].qq);
-                                    html = html.replace("#{wexin}", data.data.list[i].wexin);
-                                    html = html.replace("#{email}", data.data.list[i].email);
-                                    html = html.replace("#{status}", $("#status").children().eq(data.data.list[i].status).html());
-                                    html = html.replace("#{address}", data.data.list[i].address);
-                                    html = html.replace("#{date}", data.data.list[i].date);
-                                    $("#chance_td").append(html);
-                                     localStorage.setItem("cus" + i, JSON.stringify(data.data.list[i]))
+                                    html = html.replace("#{id}", i+1);
+                                    html = html.replace("#{goodsId}", data.data.list[i].id == null ? '':  data.data.list[i].id);
+                                    html = html.replace("#{name}", data.data.list[i].name == null ? '':  data.data.list[i].name);
+                                    html = html.replace("#{colour}", data.data.list[i].colour == null ? '':  data.data.list[i].colour);
+                                    html = html.replace("#{size}", data.data.list[i].size == null ? '':  data.data.list[i].size);
+                                    html = html.replace("#{specification}", data.data.list[i].specification == null ? '':  data.data.list[i].specification);
+                                    html = html.replace("#{minPrice}", data.data.list[i].minPrice == null ? '':  data.data.list[i].minPrice);
+                                    html = html.replace("#{pic}", data.data.list[i].pic == null ? '':  data.data.list[i].pic);
+                                    html = html.replace("#{dateAdd}", data.data.list[i].dateAdd == null ? '':  data.data.list[i].dateAdd);
+                                    $("#goods_td").append(html);
+                                    localStorage.setItem("cus" + i, JSON.stringify(data.data.list[i]))
                                 }
                             }
                         });
