@@ -47,9 +47,5 @@ public class OrderServiceImpl  implements OrderService {
         }
     }
 
-    /*@Override
-    public List<OrderDetailEntity> getOrderDetailList(Integer id) {
-        List<OrderDetailEntity> orderDetailList = orderMapper.getOrderDetailList(id);
-        return orderDetailList;
-    }*/
+
 }

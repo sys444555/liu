@@ -7,31 +7,30 @@ $(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-
                 for (var i = 0; i < data.data.list.length; i++) {
-
                     var html = '<tr>'
                         + '<td class="bs-checkbox"  style="width: 36px;" data-field="state" tabindex="0"><input id="#{cusId}" type="checkbox" name="checkbox"/></td>'
-                        + '<td>#{xuhao}</td>'
                         + '<td>#{id}</td>'
+                        + '<td>#{goodsId}</td>'
                         + '<td>#{name}</td>'
-                        + '<td>#{category}</td>'
+                        + '<td>#{categoryName}</td>'
+                        + '<td>#{colour}</td>'
                         + '<td>#{size}</td>'
-                        + '<td>#{min_price}</td>'
-                        + '<td><img src="#{pic}" style="width: 54px;"></td>'
+                        + '<td>#{minPrice}</td>'
+                        + '<td><img src="#{pic}"/></td>'
                         + '<td>#{dateAdd}</td>'
                         + '</tr>';
 
-                    html = html.replace("#{cusId}", "cus"+i);
-                    html = html.replace("#{xuhao}", i);
-                    html = html.replace("#{id}", data.data.list[i].id);
-                    html = html.replace("#{name}", data.data.list[i].name);
-                    html = html.replace("#{category}", data.data.list[i].category);
-                    html = html.replace("#{size}", data.data.list[i].size);
-                    html = html.replace("#{min_price}", data.data.list[i].minPrice);
-                    html = html.replace("#{pic}", data.data.list[i].pic);
-                    html = html.replace("#{dateAdd}", data.data.list[i].dateAdd);
-                    $("#chance_td").append(html);
+                    html = html.replace("#{id}", i+1);
+                    html = html.replace("#{goodsId}", data.data.list[i].id == null ? '':  data.data.list[i].id);
+                    html = html.replace("#{name}", data.data.list[i].name == null ? '':  data.data.list[i].name);
+                    html = html.replace("#{colour}", data.data.list[i].colour == null ? '':  data.data.list[i].colour);
+                    html = html.replace("#{size}", data.data.list[i].size == null ? '':  data.data.list[i].size);
+                    html = html.replace("#{categoryName}", data.data.list[i].categoryName == null ? '':  data.data.list[i].categoryName);
+                    html = html.replace("#{minPrice}", data.data.list[i].minPrice == null ? '':  data.data.list[i].minPrice);
+                    html = html.replace("#{pic}", data.data.list[i].pic == null ? '':  data.data.list[i].pic);
+                    html = html.replace("#{dateAdd}", data.data.list[i].dateAdd == null ? '':  data.data.list[i].dateAdd);
+                    $("#goods_td").append(html);
                     localStorage.setItem("cus" + i, JSON.stringify(data.data.list[i]))
                 }
 
@@ -55,26 +54,27 @@ $(function () {
                                 for (var i = 0; i < data.data.list.length; i++) {
                                     var html = '<tr>'
                                         + '<td class="bs-checkbox"  style="width: 36px;" data-field="state" tabindex="0"><input id="#{cusId}" type="checkbox" name="checkbox"/></td>'
-                                        + '<td>#{xuhao}</td>'
                                         + '<td>#{id}</td>'
+                                        + '<td>#{goodsId}</td>'
                                         + '<td>#{name}</td>'
-                                        + '<td>#{category}</td>'
+                                        + '<td>#{categoryName}</td>'
+                                        + '<td>#{colour}</td>'
                                         + '<td>#{size}</td>'
-                                        + '<td>#{min_price}</td>'
-                                        + '<td><img src="#{pic}" style="width: 54px;"></td>'
+                                        + '<td>#{minPrice}</td>'
+                                        + '<td><img src="#{pic}"/></td>'
                                         + '<td>#{dateAdd}</td>'
                                         + '</tr>';
 
-                                    html = html.replace("#{cusId}", "cus"+i);
-                                    html = html.replace("#{xuhao}", i);
-                                    html = html.replace("#{id}", data.data.list[i].id);
-                                    html = html.replace("#{name}", data.data.list[i].name);
-                                    html = html.replace("#{category}", data.data.list[i].category);
-                                    html = html.replace("#{size}", data.data.list[i].size);
-                                    html = html.replace("#{min_price}", data.data.list[i].minPrice);
-                                    html = html.replace("#{pic}", data.data.list[i].pic);
-                                    html = html.replace("#{dateAdd}", data.data.list[i].dateAdd);
-                                    $("#chance_td").append(html);
+                                    html = html.replace("#{id}", i+1);
+                                    html = html.replace("#{goodsId}", data.data.list[i].id == null ? '':  data.data.list[i].id);
+                                    html = html.replace("#{name}", data.data.list[i].name == null ? '':  data.data.list[i].name);
+                                    html = html.replace("#{colour}", data.data.list[i].colour == null ? '':  data.data.list[i].colour);
+                                    html = html.replace("#{size}", data.data.list[i].size == null ? '':  data.data.list[i].size);
+                                    html = html.replace("#{categoryName}", data.data.list[i].categoryName == null ? '':  data.data.list[i].categoryName);
+                                    html = html.replace("#{minPrice}", data.data.list[i].minPrice == null ? '':  data.data.list[i].minPrice);
+                                    html = html.replace("#{pic}", data.data.list[i].pic == null ? '':  data.data.list[i].pic);
+                                    html = html.replace("#{dateAdd}", data.data.list[i].dateAdd == null ? '':  data.data.list[i].dateAdd);
+                                    $("#goods_td").append(html);
                                     localStorage.setItem("cus" + i, JSON.stringify(data.data.list[i]))
                                 }
                             }
@@ -89,21 +89,20 @@ $(function () {
     showChanceList(6)
 });
 
-$("#picture_btn").click(function () {
+$("#goods_btn").click(function () {
     var formData = new FormData();
     formData.append('file', $('#pic')[0].files[0]); // 固定格式
     formData.append("name",$("#name").val());
-    formData.append("category",$("#category").val());
+    formData.append("categoryName",$("#categoryName").val());
     formData.append("colour",$("#colour").val());
     formData.append("size",$("#size").val());
-    formData.append("min_price",$("#min_price").val());
-    formData.append("dateAdd",0);
+    formData.append("minPrice",$("#minPrice").val());
     console.log(formData);
 
     var token=getCookie("token")
     console.log(token)
     $.ajax({
-        url: "../upload/fileUpload",
+        url: "../goods/fileUpload",
         data: formData,
         headers: {
             "token":token
@@ -238,4 +237,6 @@ $("#updown_btn").click(function () {
         });
     }
 });
+
+
 

@@ -53,33 +53,33 @@
             </div>
             <div class="modal-body">
                 <table width="100%" align="center" class="cus_all_tb">
-                    <form id="personnel_add" method="post" enctype="multipart/form-data">
+                    <form id="goods_add" method="post" enctype="multipart/form-data">
                         <tr>
                             <td align="left">商品名称：
                                 <input type="text" name="name" id="name"/>
                                 <span style="color: red;">*</span>
                             </td>
                             <td align="absbottom">商品类别：
-                                <select style="width: 144px" id="category" name="category">
-                                    <option value="0">上衣</option>
-                                    <option value="1">裤装</option>
-                                    <option value="2">衬衫</option>
-                                    <option value="3">西装</option>
-                                    <option value="4">吊带</option>
-                                    <option value="5">喇叭裤</option>
-                                    <option value="6">小脚裤裤</option>
-                                    <option value="7">半身裙</option>
-                                    <option value="8">裙装</option>
-                                    <option value="9">鞋靴</option>
-                                    <option value="10">包装</option>
-                                    <option value="11">礼服裙</option>
-                                    <option value="12">高跟鞋</option>
-                                    <option value="13">休闲鞋</option>
-                                    <option value="14">项链</option>
-                                    <option value="15">耳饰</option>
-                                    <option value="16">首饰</option>
-                                    <option value="17">单肩包</option>
-                                    <option value="18">手提包</option>
+                                <select style="width: 144px" id="categoryName" name="categoryName">
+                                    <option>上衣</option>
+                                    <option>裤装</option>
+                                    <option>衬衫</option>
+                                    <option>西装</option>
+                                    <option>吊带</option>
+                                    <option>喇叭裤</option>
+                                    <option>小脚裤裤</option>
+                                    <option>半身裙</option>
+                                    <option>裙装</option>
+                                    <option>鞋靴</option>
+                                    <option>包装</option>
+                                    <option>礼服裙</option>
+                                    <option>高跟鞋</option>
+                                    <option>休闲鞋</option>
+                                    <option>项链</option>
+                                    <option>耳饰</option>
+                                    <option>首饰</option>
+                                    <option>单肩包</option>
+                                    <option>手提包</option>
                                 </select>&nbsp;
                                 <span style="color: red;">*</span>
                             </td>
@@ -98,7 +98,7 @@
                         </tr>
                         <tr>
                             <td align="left">商品价格：
-                                <input type="text" style="width: 144px;" name="min_price" id="min_price"/>
+                                <input type="text" style="width: 144px;" name="minPrice" id="minPrice"/>
                                 <span style="color: red;">*</span>
                             </td>
                             <td align="absbottom">商品图片：
@@ -113,7 +113,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary" id="personnel_btn">
+                <button type="button" class="btn btn-primary" id="goods_btn">
                     提交添加
                 </button>
             </div>
@@ -253,13 +253,14 @@
             <th style="text-align: center">商品编号</th>
             <th style="text-align: center">商品名称</th>
             <th style="text-align: center">商品类别</th>
-            <th style="text-align: center">商品规格</th>
+            <th style="text-align: center">商品颜色</th>
+            <th style="text-align: center">商品尺寸</th>
             <th style="text-align: center">商品价格</th>
             <th style="text-align: center">商品图片</th>
             <th style="text-align: center">商品添加时间</th>
         </tr>
         </thead>
-        <tbody style="text-align: center;height: 30px;width: 50px;overflow: hidden;" id="chance_td">
+        <tbody style="text-align: center;height: 30px;width: 50px;overflow: hidden;" id="goods_td">
 
         </tbody>
     </table>
@@ -274,7 +275,7 @@
 <script src="../js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="../js/content.min.js?v=1.0.0"></script>
 <script src="../js/cityselect.js"></script>
-<script src="../js/order/order.js"></script>
+<script src="../js/goods/goods.js"></script>
 <script src="../js/jquery.pagination.js"></script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=178642170" charset="UTF-8"></script>
 </body>
