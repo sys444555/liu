@@ -125,7 +125,7 @@ $("#picture_btn").click(function () {
         success: function (json) {
 
             if (json.code == 0){
-                var html = '<tr>'
+               /* var html = '<tr>'
                     + '<td class="bs-checkbox"  style="width: 36px;" data-field="state" tabindex="0"><input type="checkbox" name="checkbox"/></td>'
                     + '<td>#{picUrl}</td>'
                     + '<td>#{title}</td>'
@@ -141,7 +141,8 @@ $("#picture_btn").click(function () {
                 html = html.replace("#{title}", $("#title").val());
                 html = html.replace("#{type}", $("#type").val());
                 html = html.replace("#{statusStr}", $("#statusStr").val());
-                $("#chance_td").append(html);
+                $("#chance_td").append(html);*/
+               alert("上架成功")
                 $("#cus_chance_add").modal("hide");
                 window.location.reload(true);
             } else {
