@@ -26,19 +26,10 @@ public class LoginInterceptorConfigurer
         excludePatterns.add("/js/**");
         excludePatterns.add("/fonts/**");
         excludePatterns.add("/img/**");
-      /*  excludePatterns.add("/shoop/insert");
-        excludePatterns.add("/shoop/select");
-        excludePatterns.add("/shoop/update");
-        excludePatterns.add("/reg/insert");*/
         excludePatterns.add("/login");
         excludePatterns.add("/page/login");
         excludePatterns.add("/usr/local/ngnix/html/pic/img/shopImg/**");
-   /*     excludePatterns.add("/shop/list");
-        excludePatterns.add("/price/list");
 
-        excludePatterns.add("/picture/list");*/
-
-      //   注册拦截器
         registry
                 .addInterceptor(new LoginInterceptor())
                 .addPathPatterns(patterns)
