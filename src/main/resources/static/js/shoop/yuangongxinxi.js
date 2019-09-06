@@ -99,9 +99,15 @@ $("#personnel_btn").click(function () {
     var formData = $("#personnel_add").serialize(); //取表单值 并进行序列化；此时formData已经是乱码了
     formData = decodeURIComponent(formData, true);
     console.log(formData);
+
+    var token=getCookie("token")
+    console.log(token)
     $.ajax({
         url: "../personnel/insert",
         data: formData,
+        headers: {
+            "token":token
+        },
         type: "POST",
         dataType: "json",
         async:true,
@@ -142,6 +148,8 @@ $("#personnel_btn").click(function () {
 });
 
 $("#delete_btn").click(function () {
+    var token=getCookie("token")
+    console.log(token)
     var checkboxs=document.getElementsByName("checkbox");
     for (var i = 0; i < checkboxs.length; i++) {
         if( checkboxs[i].checked){
@@ -159,6 +167,9 @@ $("#delete_btn").click(function () {
         var checkid= data.id;
         $.ajax({
             url: "../personnel/delete/"+checkid,
+            headers: {
+                "token":token
+            },
             type: "POST",
             dataType: "json",
             async:true,
@@ -179,9 +190,14 @@ $("#delete_btn").click(function () {
 $("#bt_name").click(function () {
     var cname=$("#c_name").val();
     console.log(cname)
+    var token=getCookie("token")
+    console.log(token)
     $.ajax({
         url: "../personnel/select/",
         data: {name:cname},
+        headers: {
+            "token":token
+        },
         type: "POST",
         dataType: "json",
         async:true,
@@ -267,9 +283,14 @@ $("#update").click(function () {
 $("#update_sub").click(function () {
     var forData = $("#personnel_update").serialize();
     forData = decodeURIComponent(forData, true);
+    var token=getCookie("token")
+    console.log(token)
     $.ajax({
         url: "../personnel/update",
         data: forData,
+        headers: {
+            "token":token
+        },
         type: "POST",
         dataType: "json",
         async:true,
@@ -285,3 +306,14 @@ $("#update_sub").click(function () {
     })
 
 })
+function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+    if(arr=document.cookie.match(reg)){
+        return unescape(arr[2]);
+    }
+    else{
+        return null;
+    }
+}

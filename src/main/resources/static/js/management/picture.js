@@ -106,9 +106,15 @@ $("#picture_btn").click(function () {
     formData.append("paixu",0);
     formData.append("status",0);
     console.log(formData);
+
+    var token=getCookie("token")
+    console.log(token)
     $.ajax({
         url: "../upload/fileUpload",
         data: formData,
+        headers: {
+            "token":token
+        },
         type: "POST",
         dataType: "json",
         async:true,
@@ -144,6 +150,18 @@ $("#picture_btn").click(function () {
         }
     });
 });
+
+function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+    if(arr=document.cookie.match(reg)){
+        return unescape(arr[2]);
+    }
+    else{
+        return null;
+    }
+}
 
 /*
 $("#update").click(function () {
@@ -206,6 +224,8 @@ $("#update_sub").click(function () {
 */
 
 $("#updown_btn").click(function () {
+    var token=getCookie("token")
+    console.log(token)
     var checkboxs=document.getElementsByName("checkbox");
     for (var i = 0; i < checkboxs.length; i++) {
         if( checkboxs[i].checked){
@@ -222,6 +242,9 @@ $("#updown_btn").click(function () {
         var checkid= data.id;
         $.ajax({
             url: "../picture/updown/"+checkid,
+            headers: {
+                "token":token
+            },
             type: "POST",
             dataType: "json",
             async:true,
