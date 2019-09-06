@@ -1,5 +1,4 @@
 $(function () {
-    debugger;
     var token=getCookie("token")
     console.log(token)
     $.ajax({
