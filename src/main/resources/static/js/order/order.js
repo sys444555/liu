@@ -130,8 +130,6 @@ $("#order_detail").click(function () {
         //获取当前被check的id  获取数据
 
         console.log(data.orderOn)
-
-
         //数据key 与对应的 id 进行数据绑定  包含cusId
         //提交整个ajax请求到后台 包含cusId
     }
@@ -279,6 +277,7 @@ $("#update_order").click(function () {
             if (json.code == 0) {
                 $("#cus_chance_alter").modal("hide");
                 //局部页面刷新
+                alert("已修改订单快递信息");
                 window.location.reload(true);
             } else {
                 alert(json.message);
