@@ -6,15 +6,19 @@ import com.github.pagehelper.PageInfo;
 import com.jckc_backer.common.utils.ResponseUtil;
 import com.jckc_backer.modules.goods.entity.GoodsEntity;
 import com.jckc_backer.modules.goods.service.GoodsService;
+import com.jckc_backer.modules.management.utils.UploadUtils;
 import io.swagger.annotations.Api;
-import org.apache.shiro.authz.annotation.Logical;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -31,8 +35,55 @@ import java.util.List;
 @RequestMapping("/goods")
 public class GoodsController {
 
+    private final ResourceLoader resourceLoader;
+
     @Autowired
     private GoodsService goodsService;
+
+    @Autowired
+    public GoodsController(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
+
+    /*    @Value("${web.upload-path}")
+    private String path;*/
+
+    /**
+     * @param file 上传的文件
+     * @return
+     *
+     */
+    @RequestMapping(value = "/fileUpload",method= RequestMethod.POST)
+    public ResponseUtil insertPictureAddress(@RequestParam("file") MultipartFile file, GoodsEntity goodsEntity){
+        // 拿到文件名
+        String filename = file.getOriginalFilename();
+        // 存放上传图片的文件夹
+        File fileDir = UploadUtils.getImgDirFile();
+        // 输出文件夹绝对路径  -- 这里的绝对路径是相当于当前项目的路径而不是“容器”路径
+        System.out.println(fileDir.getAbsolutePath());
+
+        try {
+            // 构建真实的文件路径
+            File newFile = new File(fileDir.getAbsolutePath() + File.separator + filename);
+            System.out.println(newFile.getAbsolutePath());
+
+            // 上传图片到 -》 “绝对路径”
+            file.transferTo(newFile);
+            goodsEntity.setDateAdd(new Date());
+            goodsEntity.setPic(filename);
+            String name=goodsEntity.getCategoryName();
+            System.out.println(name);
+           Integer t= goodsService.getCategoryIdByName(name);
+           System.out.println(t);
+            /*pictureService.insertPicture(pictureEntity);*/
+            return ResponseUtil.success();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseUtil.error();
+        }
+
+    }
+
 
     /**
      * 获取商品列表
@@ -56,6 +107,7 @@ public class GoodsController {
 
         return ResponseUtil.success();
     }
+
 
 
 

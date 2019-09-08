@@ -35,6 +35,7 @@
 		WHERE a.id = b.sid AND b.specification='尺寸' AND b.goods_id=#{id}
 	</select>
 
+<<<<<<< HEAD
 	<update id="updateGoods">
 		UPDATE shop SET name=#{name},min_price=#{minPrice}
 		WHERE id=#{id}
@@ -84,4 +85,10 @@
 		INSERT INTO goods_product(goods_id,specification)
 		VALUE (#{goodsId},#{specification})
 	</insert>
+=======
+	<select id="getCategoryId" resultType="Integer">
+		SELECT id FROM category WHERE name=#{name}
+
+	</select>
+>>>>>>> c7b4e2cfd6678593bfde02f32e45de96ad4113ac
 </mapper>

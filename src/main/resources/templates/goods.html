@@ -53,33 +53,33 @@
             </div>
             <div class="modal-body">
                 <table width="100%" align="center" class="cus_all_tb">
-                    <form id="personnel_add" method="post" enctype="multipart/form-data">
+                    <form id="goods_add" method="post" enctype="multipart/form-data">
                         <tr>
                             <td align="left">商品名称：
                                 <input type="text" name="name" id="name"/>
                                 <span style="color: red;">*</span>
                             </td>
-                            <td align="absbottom" id="sex" name="sex">商品类别：
-                                <select style="width: 144px" id="category" name="category">
-                                    <option value="0">上衣</option>
-                                    <option value="1">裤装</option>
-                                    <option value="2">衬衫</option>
-                                    <option value="3">西装</option>
-                                    <option value="4">吊带</option>
-                                    <option value="5">喇叭裤</option>
-                                    <option value="6">小脚裤裤</option>
-                                    <option value="7">半身裙</option>
-                                    <option value="8">裙装</option>
-                                    <option value="9">鞋靴</option>
-                                    <option value="10">包装</option>
-                                    <option value="11">礼服裙</option>
-                                    <option value="12">高跟鞋</option>
-                                    <option value="13">休闲鞋</option>
-                                    <option value="14">项链</option>
-                                    <option value="15">耳饰</option>
-                                    <option value="16">首饰</option>
-                                    <option value="17">单肩包</option>
-                                    <option value="18">手提包</option>
+                            <td align="absbottom">商品类别：
+                                <select style="width: 144px" id="categoryName" name="categoryName">
+                                    <option>上衣</option>
+                                    <option>裤装</option>
+                                    <option>衬衫</option>
+                                    <option>西装</option>
+                                    <option>吊带</option>
+                                    <option>喇叭裤</option>
+                                    <option>小脚裤裤</option>
+                                    <option>半身裙</option>
+                                    <option>裙装</option>
+                                    <option>鞋靴</option>
+                                    <option>包装</option>
+                                    <option>礼服裙</option>
+                                    <option>高跟鞋</option>
+                                    <option>休闲鞋</option>
+                                    <option>项链</option>
+                                    <option>耳饰</option>
+                                    <option>首饰</option>
+                                    <option>单肩包</option>
+                                    <option>手提包</option>
                                 </select>&nbsp;
                                 <span style="color: red;">*</span>
                             </td>
@@ -102,8 +102,7 @@
                                 <span style="color: red;">*</span>
                             </td>
                             <td align="absbottom">商品图片：
-                                <input type="text" style="width: 144px;" name="pic" id="pic"/>
-                                <button type="button" class="btn btn-upload" >点击上传</button>
+                                <input type="file" style="width: 144px;" name="pic" id="pic"/>
                             </td>
                         </tr>
 
@@ -114,8 +113,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <button type="button" class="btn btn-primary" id="personnel_btn">
-                    提交更改
+                <button type="button" class="btn btn-primary" id="goods_btn">
+                    提交添加
                 </button>
             </div>
         </div>

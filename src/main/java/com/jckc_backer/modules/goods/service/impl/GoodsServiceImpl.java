@@ -57,6 +57,7 @@ public class GoodsServiceImpl  implements GoodsService {
     }
 
     @Override
+<<<<<<< HEAD
     public void updateGoods(GoodsEntity goodsEntity) {
 
         Integer integer = goodsMapper.updateGoods(goodsEntity);
@@ -167,6 +168,11 @@ public class GoodsServiceImpl  implements GoodsService {
                 }
             }
         }
+=======
+    public Integer getCategoryIdByName(String name) {
+        Integer id=goodsMapper.getCategoryId(name);
+        return id;
+>>>>>>> c7b4e2cfd6678593bfde02f32e45de96ad4113ac
     }
 
 }

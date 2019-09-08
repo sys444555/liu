@@ -23,6 +23,7 @@ public interface GoodsMapper  {
 
     public List<Specification> getSizeList(@Param(value = "id") Integer id);
 
+<<<<<<< HEAD
     public Integer updateGoods(GoodsEntity goodsEntity);
 
     public void deleteColourSpecification(@Param(value = "goodsId") Integer goodsId,
@@ -55,4 +56,7 @@ public interface GoodsMapper  {
 
     public Integer insertGoodsProduct(@Param(value = "goodsId") Integer goodsId,
                                       @Param(value = "specification") String specification);
+=======
+    Integer getCategoryId(String name);
+>>>>>>> c7b4e2cfd6678593bfde02f32e45de96ad4113ac
 }
