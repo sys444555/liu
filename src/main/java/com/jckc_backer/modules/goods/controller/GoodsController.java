@@ -35,7 +35,7 @@ public class GoodsController {
     private GoodsService goodsService;
 
     /**
-     * 获取订单
+     * 获取商品列表
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -45,6 +45,18 @@ public class GoodsController {
         PageInfo<GoodsEntity> pageInfo = new PageInfo<>(goodsList);
         return ResponseUtil.success(pageInfo);
     }
+
+    /**
+     * 更新商品数据
+     */
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ResponseUtil updateGoods(GoodsEntity goodsEntity){
+
+         goodsService.updateGoods(goodsEntity);
+
+        return ResponseUtil.success();
+    }
+
 
 
 

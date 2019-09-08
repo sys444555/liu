@@ -53,4 +53,19 @@ public class GoodsEntity implements Serializable {
      */
     private String pic;
 
+    public static void main(String[] args) {
+        int[] colourArray = {
+            0, 1, 4, 5,6,5};
+
+        for(int i=0;i<colourArray.length-1;i++){
+            for(int j=i+1;j>colourArray.length;j++){
+                System.out.println("colourArray[i] = " + colourArray[i]);
+                System.out.println("colourArray[j] = " + colourArray[j]);
+                if(colourArray[i] == colourArray[j]){
+                    System.out.println("colourArray[i] = " + colourArray[i]);
+                }
+            }
+        }
+    }
+
 }

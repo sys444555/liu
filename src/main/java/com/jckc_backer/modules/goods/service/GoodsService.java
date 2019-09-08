@@ -17,5 +17,7 @@ public interface GoodsService {
 
     public List<GoodsEntity> getGoodsList();
 
+    public void updateGoods(GoodsEntity goodsEntity);
+
 
 }
