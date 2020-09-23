@@ -1,5 +1,6 @@
 package com.jckc_backer.aop;
 
+import com.jckc_backer.common.utils.RedisUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 
 
@@ -22,6 +24,9 @@ import java.util.Arrays;
 @Aspect
 @Component
 public class WebLogAop {
+
+    @Resource
+    private RedisUtil redisUtil;
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 

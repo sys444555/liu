@@ -35,9 +35,20 @@
 		WHERE a.id = b.sid AND b.specification='尺寸' AND b.goods_id=#{id}
 	</select>
 
-<<<<<<< HEAD
 	<update id="updateGoods">
-		UPDATE shop SET name=#{name},min_price=#{minPrice}
+		UPDATE shop
+		<set>
+
+			<if test="name != null">
+				name=#{name}
+			</if>
+			<if test="minPrice != null">
+				,min_price=#{minPrice}
+			</if>
+			<if test="pic != null">
+				,pic=#{pic}
+			</if>
+		</set>
 		WHERE id=#{id}
 	</update>
 
@@ -85,10 +96,41 @@
 		INSERT INTO goods_product(goods_id,specification)
 		VALUE (#{goodsId},#{specification})
 	</insert>
-=======
+
 	<select id="getCategoryId" resultType="Integer">
-		SELECT id FROM category WHERE name=#{name}
+		SELECT id FROM category WHERE name=#{name} AND level = 2
 
 	</select>
->>>>>>> c7b4e2cfd6678593bfde02f32e45de96ad4113ac
+
+	<insert id="insertGoods" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO shop(category_id,name,min_price,date_add,pic)
+		VALUES (#{categoryId},#{name},#{minPrice},#{dateAdd},#{pic})
+	</insert>
+
+	<insert id="insertPic" >
+		INSERT INTO pics(goodsId,pic)
+		VALUES (#{goodsId},#{pic})
+	</insert>
+
+	<insert id="insertGoodsColourSpecification" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO goods_specification(goods_id,specification,value,sid)
+		VALUES (#{goodsId},'颜色','颜色',0);
+
+	</insert>
+
+	<insert id="insertGoodsSizeSpecification" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO goods_specification(goods_id,specification,value,sid)
+		VALUES (#{goodsId},'尺寸','尺寸',0);
+	</insert>
+
+	<insert id="insertCol">
+		INSERT INTO goods_specification(goods_id,specification,value,sid)
+		VALUES (#{goodsId},'颜色',#{value},#{sid})
+	</insert>
+
+	<insert id="insertSiz">
+		INSERT INTO goods_specification(goods_id,specification,value,sid)
+		VALUES (#{goodsId},'尺寸',#{value},#{sid})
+	</insert>
+
 </mapper>

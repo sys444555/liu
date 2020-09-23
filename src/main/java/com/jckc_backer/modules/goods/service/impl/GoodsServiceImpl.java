@@ -57,7 +57,6 @@ public class GoodsServiceImpl  implements GoodsService {
     }
 
     @Override
-<<<<<<< HEAD
     public void updateGoods(GoodsEntity goodsEntity) {
 
         Integer integer = goodsMapper.updateGoods(goodsEntity);
@@ -149,30 +148,67 @@ public class GoodsServiceImpl  implements GoodsService {
         }
     }
 
-    public void updateProduct(GoodsEntity goodsEntity){
+    public void updateProduct(GoodsEntity goodsEntity) {
         Integer integer = goodsMapper.deleteGoodsProduct(goodsEntity.getId());
         System.out.println("integer = " + integer);
-        if(integer == null ||  integer == 0){
+        if (integer == null || integer == 0) {
             throw new JcException("更新失败，服务器端异常");
         }
         String colour = goodsEntity.getColour();
         String size = goodsEntity.getSize();
         String[] colours = colour.split(";");
         String[] sizes = size.split(";");
-        for(int i=0;i<colours.length;i++){
-            for(int j=0;j<sizes.length;j++){
+        for (int i = 0; i < colours.length; i++) {
+            for (int j = 0; j < sizes.length; j++) {
                 String specification = colours[i] + ":" + sizes[j];
                 Integer insertResult = goodsMapper.insertGoodsProduct(goodsEntity.getId(), specification);
-                if(insertResult == null ||  insertResult == 0){
+                if (insertResult == null || insertResult == 0) {
                     throw new JcException("更新失败，服务器端异常");
                 }
             }
         }
-=======
+
+
+    }
+
     public Integer getCategoryIdByName(String name) {
         Integer id=goodsMapper.getCategoryId(name);
         return id;
->>>>>>> c7b4e2cfd6678593bfde02f32e45de96ad4113ac
+    }
+
+    @Override
+    public void insertGoods(GoodsEntity goodsEntity) {
+        System.out.println("goodsEntity = " + goodsEntity);
+        Integer shopResult = goodsMapper.insertGoods(goodsEntity);
+        Integer id = goodsEntity.getId();
+        System.out.println("id1 = " + id);
+        goodsMapper.insertPic(goodsEntity);
+        String colour = goodsEntity.getColour();
+        String[] colours = colour.split(";");
+        String size = goodsEntity.getSize();
+        String[] sizes = size.split(";");
+        Specification specification = new Specification();
+        specification.setGoodsId(id);
+        goodsMapper.insertGoodsColourSpecification(specification);
+        Integer id2 = specification.getId();
+        System.out.println("id2 = " + id2);
+        goodsMapper.insertGoodsSizeSpecification(specification);
+        Integer id3 = specification.getId();
+        for(int i=0;i<colours.length;i++){
+            goodsMapper.insertCol(id, colours[i], id2);
+        }
+        for(int j=0;j<sizes.length;j++){
+            goodsMapper.insertSiz(id, sizes[j], id3);
+        }
+        for (int h = 0; h < colours.length; h++) {
+            for (int k = 0; k < sizes.length; k++) {
+                String specificat = colours[h] + ":" + sizes[k];
+                Integer insertResult = goodsMapper.insertGoodsProduct(id, specificat);
+                if (insertResult == null || insertResult == 0) {
+                    throw new JcException("更新失败，服务器端异常");
+                }
+            }
+        }
     }
 
 }

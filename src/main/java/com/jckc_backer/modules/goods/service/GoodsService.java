@@ -17,11 +17,9 @@ public interface GoodsService {
 
     public List<GoodsEntity> getGoodsList();
 
-<<<<<<< HEAD
     public void updateGoods(GoodsEntity goodsEntity);
 
-
-=======
     Integer getCategoryIdByName(String name);
->>>>>>> c7b4e2cfd6678593bfde02f32e45de96ad4113ac
+
+    void insertGoods(GoodsEntity goodsEntity);
 }

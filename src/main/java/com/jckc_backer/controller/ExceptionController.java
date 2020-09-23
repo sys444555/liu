@@ -1,8 +1,12 @@
 package com.jckc_backer.controller;
 
+import com.jckc_backer.common.exception.JcException;
+import com.jckc_backer.common.utils.ResponseUtil;
 import com.jckc_backer.model.ResultMap;
 import org.apache.shiro.ShiroException;
 import org.apache.shiro.authc.AuthenticationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -34,6 +38,42 @@ public class ExceptionController {
         return resultMap.fail().code(403).message("认证过期,请重新登录");
 
     }
+
+    private static final Logger logger = LoggerFactory.getLogger(ExceptionController.class);
+
+
+    /**
+        * 处理自定义异常
+         * @param
+         * @return
+    */
+
+    @ExceptionHandler(JcException.class)
+    public ResponseUtil handleJcException(JcException e){
+        logger.error(e.getMsg(),e);
+        return ResponseUtil.error(e.getCode(), "访问出现异常");
+    }
+
+    //处理其他异常类
+
+    /**
+         * 处理RuntimeException
+        * @param
+        * @return
+     */
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseUtil handleRuntimeException(Exception e){
+        logger.error(e.getMessage(),e);
+        return ResponseUtil.error(500, "访问出现异常");
+    }
+
+
+    /**
+        * 处理未知异常
+        * @param
+        * @return
+    */
 
 
     // 捕捉其他所有异常

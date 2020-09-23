@@ -5,8 +5,9 @@ import com.jckc_backer.modules.goods.entity.GoodsEntity;
 import com.jckc_backer.modules.goods.entity.Specification;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
-
+import java.util.Date;
 /**
  * @author ：fenghuang
  * @date ：Created in 2019/8/13 16:27
@@ -23,7 +24,6 @@ public interface GoodsMapper  {
 
     public List<Specification> getSizeList(@Param(value = "id") Integer id);
 
-<<<<<<< HEAD
     public Integer updateGoods(GoodsEntity goodsEntity);
 
     public void deleteColourSpecification(@Param(value = "goodsId") Integer goodsId,
@@ -56,7 +56,23 @@ public interface GoodsMapper  {
 
     public Integer insertGoodsProduct(@Param(value = "goodsId") Integer goodsId,
                                       @Param(value = "specification") String specification);
-=======
-    Integer getCategoryId(String name);
->>>>>>> c7b4e2cfd6678593bfde02f32e45de96ad4113ac
+
+    Integer getCategoryId(@Param(value = "name") String name);
+
+    Integer insertGoods(GoodsEntity goodsEntity);
+
+    Integer insertPic(GoodsEntity goodsEntity);
+
+    Integer insertGoodsColourSpecification(Specification specification);
+
+    Integer insertGoodsSizeSpecification(Specification specification);
+
+    Integer insertCol(@Param(value = "goodsId") Integer goodsId,
+                      @Param(value = "value") String value,
+                      @Param(value = "sid") Integer sid);
+
+    Integer insertSiz(@Param(value = "goodsId") Integer goodsId,
+                      @Param(value = "value") String value,
+                      @Param(value = "sid") Integer sid);
+
 }

@@ -27,6 +27,8 @@ public class GoodsEntity implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer id;
 
+    private Integer categoryId;
+
     private String categoryName;
 
     @ApiModelProperty(value = "商品名",name="name")

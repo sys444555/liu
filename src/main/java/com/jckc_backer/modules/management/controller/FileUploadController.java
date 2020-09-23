@@ -57,7 +57,7 @@ public class FileUploadController {
             // 构建真实的文件路径
             File newFile = new File(fileDir.getAbsolutePath() + File.separator + filename);
             System.out.println(newFile.getAbsolutePath());
-
+            filename = UploadUtils.LOADPATH + filename;
             // 上传图片到 -》 “绝对路径”
             file.transferTo(newFile);
             pictureEntity.setDateAdd(new Date());

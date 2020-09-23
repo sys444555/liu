@@ -55,6 +55,7 @@ public class GoodsController {
      */
     @RequestMapping(value = "/fileUpload",method= RequestMethod.POST)
     public ResponseUtil insertPictureAddress(@RequestParam("file") MultipartFile file, GoodsEntity goodsEntity){
+
         // 拿到文件名
         String filename = file.getOriginalFilename();
         // 存放上传图片的文件夹
@@ -62,20 +63,22 @@ public class GoodsController {
         // 输出文件夹绝对路径  -- 这里的绝对路径是相当于当前项目的路径而不是“容器”路径
         System.out.println(fileDir.getAbsolutePath());
 
+
         try {
             // 构建真实的文件路径
             File newFile = new File(fileDir.getAbsolutePath() + File.separator + filename);
             System.out.println(newFile.getAbsolutePath());
-
+            filename = UploadUtils.LOADPATH + filename;
             // 上传图片到 -》 “绝对路径”
             file.transferTo(newFile);
             goodsEntity.setDateAdd(new Date());
             goodsEntity.setPic(filename);
             String name=goodsEntity.getCategoryName();
             System.out.println(name);
-           Integer t= goodsService.getCategoryIdByName(name);
+           Integer t = goodsService.getCategoryIdByName(name);
+            goodsEntity.setCategoryId(t);
            System.out.println(t);
-            /*pictureService.insertPicture(pictureEntity);*/
+            goodsService.insertGoods(goodsEntity);
             return ResponseUtil.success();
         } catch (IOException e) {
             e.printStackTrace();
@@ -100,11 +103,36 @@ public class GoodsController {
     /**
      * 更新商品数据
      */
+    @RequestMapping(value = "/file/update", method = RequestMethod.POST)
+    public ResponseUtil updateGoods(@RequestParam("file") MultipartFile file, GoodsEntity goodsEntity){
+        String filename = file.getOriginalFilename();
+        // 存放上传图片的文件夹
+        File fileDir = UploadUtils.getImgDirFile();
+        // 输出文件夹绝对路径  -- 这里的绝对路径是相当于当前项目的路径而不是“容器”路径
+        System.out.println(fileDir.getAbsolutePath());
+        File newFile = new File(fileDir.getAbsolutePath() + File.separator + filename);
+        System.out.println(newFile.getAbsolutePath());
+
+        filename = UploadUtils.LOADPATH + filename;
+        // 上传图片到 -》 “绝对路径”
+
+        try {
+            file.transferTo(newFile);
+            goodsEntity.setPic(filename);
+            System.out.println("filename = " + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        goodsService.updateGoods(goodsEntity);
+
+        return ResponseUtil.success();
+
+
+    }
+
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ResponseUtil updateGoods(GoodsEntity goodsEntity){
-
-         goodsService.updateGoods(goodsEntity);
-
+        goodsService.updateGoods(goodsEntity);
         return ResponseUtil.success();
     }
 

@@ -1,5 +1,6 @@
 package com.jckc_backer.aop;
 
+import com.jckc_backer.common.utils.RedisUtil;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
@@ -11,6 +12,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.interceptor.*;
 
+import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +27,9 @@ import java.util.Map;
 @Aspect
 @Configuration
 public class TransactionAdviceAOP {
+
+    @Resource
+    private RedisUtil redisUtil;
 
     /**
      * 定义切点
@@ -62,6 +67,7 @@ public class TransactionAdviceAOP {
         Map<String, TransactionAttribute> map = new HashMap<>();
         map.put("find*", ruleSelect);
         map.put("select*", ruleSelect);
+        map.put("search*", ruleSelect);
         map.put("insert*", ruleChange);
         map.put("batch*", ruleChange);
         map.put("update*", ruleChange);
@@ -70,6 +76,9 @@ public class TransactionAdviceAOP {
         source.setNameMap(map);
         //配置事务拦截器
         TransactionInterceptor transactionInterceptor = new TransactionInterceptor(platformTransactionManager, source);
+
+        redisUtil.set("aaa:", "bbb");
+
         return transactionInterceptor;
     }
 
